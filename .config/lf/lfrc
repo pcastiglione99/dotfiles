@@ -1,8 +1,8 @@
 # interpreter for shell commands
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
-#set shellopts '-eu'
-#set ifs "\n"
+set shellopts '-eu'
+set ifs "\n"
 
 map <esc> clear
 map <enter> open
