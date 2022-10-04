@@ -1,0 +1,24 @@
+#!/bin/bash
+
+capacity=$(cat /sys/class/power_supply/BAT1/capacity)
+
+status=$(cat /sys/class/power_supply/BAT1/status)
+
+if [ $capacity -lt 15 ] 
+then
+	indicator= 
+elif [ $capacity -lt 30 ]
+then
+	indicator=
+elif [ $capacity -lt 60 ]
+then 
+	indicator= 
+elif [ $capacity -lt 80 ]
+then 
+	indicator= 
+else
+	indicator=
+fi
+
+[ $status != 'Discharging' ] && echo " $capacity%" || 
+echo "$indicator $capacity%"

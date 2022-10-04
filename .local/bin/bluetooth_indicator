@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function is_on(){
+  bluetooth | grep 'on'
+}
+
+# Left click
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  [[ $(is_on) ]] && bluetooth off > /dev/null || bluetooth on > /dev/null 
+  pkill -RTMIN+3 i3blocks
+# Middle click
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+  bluetooth toggle
+# Right click
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+  blueman-manager
+fi
+
+
+[[ $(is_on) ]] && echo "" || echo ""

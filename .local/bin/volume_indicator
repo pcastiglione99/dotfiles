@@ -1,0 +1,8 @@
+#!/bin/sh
+
+isMute=$(pamixer --get-mute) 
+volume=$(pamixer --get-volume)
+
+[[ $isMute == "true" ]] && echo " mute" || echo " $volume%"
+
+#[[ $(pamixer --get-mute) == "true" ]] && echo " mute" || echo " $(pamixer --get-volume)%"

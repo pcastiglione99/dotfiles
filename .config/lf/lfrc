@@ -1,0 +1,96 @@
+# interpreter for shell commands
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+#set shellopts '-eu'
+#set ifs "\n"
+
+map <esc> clear
+map <enter> open
+
+# dedicated keys for file opener actions
+map o &mimeopen $f
+map O $mimeopen --ask $f
+
+#navigation
+map gm cd /run/media/pcastiglione99
+map gh cd 
+map gd cd ~/Downloads
+map <a-t> terminal
+
+cmd mkdir %mkdir "$@"
+cmd terminal $nohup alacritty > /dev/null &
+
+cmd open ${{
+    test -L $f && f=$(readlink -f $f)
+    case $(file --mime-type $f -b) in
+        image/*) nohup feh --scale-down --auto-zoom $fx > /dev/null &;;
+        text/html) firefox $fx;;
+        text/*) nvim $fx;;
+        video/*) nohup mpv $fx > /dev/null &;;
+        application/pdf) nohup zathura $fx > /dev/null &;;
+        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
+
+
+cmd trash ${{
+    set -f
+    printf "$fx\n"
+    printf "move to trash?[y/n]"
+    read ans
+    [ $ans = "y" ] && gio trash $fx
+}}
+
+cmd delete ${{
+     set -f
+     printf "$fx\n"
+     printf "delete?[y/n]"
+     read ans
+     [ $ans = "y" ] && rm -rf $fx
+ }}
+
+map <delete> trash
+map D delete
+
+cmd unarchive ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+
+# compress current file or selected files with tar and gunzip
+cmd tar ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    tar czf $1.tar.gz $1
+    rm -rf $1
+}}
+
+# compress current file or selected files with zip
+cmd zip ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    zip -r $1.zip $1
+    rm -rf $1
+}}
+
+cmd setwallpaper $cp "$f" ~/Pictures/Wallpapers/wallpaper.jpg
+
+map az zip
+map at tar
+map au unarchive
+
+cmd remux $ffmpeg -i "$f" -c:v copy -c:a copy "$f"_mux.mp4
+
+cmd server $python -m http.server
+
+cmd mount 	$udisksctl mount   -b /dev/sda1
+cmd unmount $udisksctl unmount -b /dev/sda1

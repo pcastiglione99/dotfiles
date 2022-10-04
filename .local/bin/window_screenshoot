@@ -1,0 +1,6 @@
+#!/bin/bash
+
+name=$(date +%Y-%m-%d_%H:%M:%S)
+mkdir -p ~/Pictures/Screenshoots/
+file=~/Pictures/Screenshoots/$name.png
+maim -s $file && xclip -selection clipboard -t image/png -i $file && dunstify -i $file -a Screenshoot copied!

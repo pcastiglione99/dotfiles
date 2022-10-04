@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+xinput list 14 | grep -q "disabled" && xinput enable 14 && dunstify -a touchpad -i " " -r 1234 enable || (xinput disable 14 && dunstify -a touchpad -i " " -r 1234 disabled)
+
