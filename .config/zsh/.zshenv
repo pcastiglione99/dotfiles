@@ -23,6 +23,8 @@ export ICEAUTHORITY=$XDG_CACHE_HOME/ICEauthority/
 export ZSH="$ZDOTDIR/.oh-my-zsh"
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 alias svn="svn --config-dir \"$XDG_CONFIG_HOME\"/subversion"
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 
 # Path
 export PATH="$HOME/.local/bin:$PATH"
+

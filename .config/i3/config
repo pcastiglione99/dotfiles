@@ -20,6 +20,8 @@ font pango: SF Pro Display
 # Onedrive
 exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: ~/onedrive/
 
+exec --no-startup-id rclone --vfs-cache-mode full mount poliMi: ~/onedrivePoliMi/
+
 # Libinput
 exec --no-startup-id libinput-gestures-setup start
 

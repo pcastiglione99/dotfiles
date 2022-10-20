@@ -9,9 +9,10 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'preservim/vim-markdown'
 call plug#end()
 
-set relativenumber
+set number relativenumber
 set encoding=UTF-8
 set tabstop=4
 set shiftwidth=4

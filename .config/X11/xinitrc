@@ -1,6 +1,6 @@
 xset r rate 250 60 &
 setxkbmap -layout it &
+nm-applet --no-agent &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
-nm-applet --no-agent &
 exec /usr/bin/i3
