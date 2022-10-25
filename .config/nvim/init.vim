@@ -10,6 +10,7 @@ Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
+Plug 'sainnhe/sonokai'
 call plug#end()
 
 set number relativenumber
@@ -18,13 +19,14 @@ set tabstop=4
 set shiftwidth=4
 syntax on
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 "Material Theme
 set termguicolors
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'ocean'
-colorscheme material
+let g:sonokai_terminal_italics = 1
+let g:sonokai_theme_style = 'espresso'
+colorscheme sonokai
+hi Normal guibg=NONE ctermbg=NONE
 
 "Prettier
 let g:prettier#autoformat = 1
@@ -38,8 +40,8 @@ let g:vimtex_compiler_method = 'latexmk'
 "WordProcessor
 func! WordProcessor()
   Goyo
+  set number relativenumber
   set tw=80
-  set relativenumber
   " movement changes
   "map j gj
   "map k gk
@@ -49,7 +51,7 @@ func! WordProcessor()
   setlocal wrap
   setlocal linebreak
   " spelling and thesaurus
-  setlocal spell spelllang=it_it
+  setlocal spell spelllang=en_us
   set thesaurus+=/home/test/.vim/thesaurus/mthesaur.txt
   " complete+=s makes autocompletion search the thesaurus
   set complete+=s

@@ -4,8 +4,11 @@ set cleaner ~/.config/lf/cleaner
 set shellopts '-eu'
 set ifs "\n"
 
+set hidden true
+
 map <esc> clear
 map <enter> open
+map <f-5> reload
 
 # dedicated keys for file opener actions
 map o &mimeopen $f

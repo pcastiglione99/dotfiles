@@ -24,7 +24,6 @@ export ZSH="$ZDOTDIR/.oh-my-zsh"
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 alias svn="svn --config-dir \"$XDG_CONFIG_HOME\"/subversion"
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 # Path
 export PATH="$HOME/.local/bin:$PATH"
-
