@@ -1,5 +1,5 @@
 * {
-    font:   "FiraCode Nerd Font Medium 12";
+    font:   "SF Pro Display Medium 12";
 
     bg0:     #000000;
     bg1:     #000000;
@@ -88,4 +88,5 @@ element-icon {
 element-text {
     text-color: inherit;
 }
+
 

@@ -12,4 +12,3 @@ if [[ "${status}" == "up" ]]; then
 else
   echo " off " 
 fi
-

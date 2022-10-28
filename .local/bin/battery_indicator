@@ -2,7 +2,7 @@
 
 capacity=$(cat /sys/class/power_supply/BAT1/capacity)
 
-status=$(cat /sys/class/power_supply/BAT1/status)
+battery_status=$(cat /sys/class/power_supply/BAT1/status)
 
 if [ $capacity -lt 15 ] 
 then
@@ -20,5 +20,5 @@ else
 	indicator=
 fi
 
-[ $status != 'Discharging' ] && echo " $capacity%" || 
+[ $battery_status != 'Discharging' ] && echo " $capacity%" || 
 echo "$indicator $capacity%"

@@ -9,7 +9,7 @@ export EDITOR="nvim"
 export READER="zathura"
 export VISUAL="nvim"
 export TERMINAL="alacritty"
-export BROWSER="firefox"
+export BROWSER="/usr/bin/google-chrome-stable"
 export VIDEO="mpv"
 export IMAGE="feh"
 

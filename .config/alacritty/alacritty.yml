@@ -2,7 +2,8 @@ window:
   opacity: 0.7
 font:
   normal:
-    family: SF Mono Nerd Font Mono
+    family: SF Mono
+    style: Medium
 colors:
   cursor:
     text: "0x000000"

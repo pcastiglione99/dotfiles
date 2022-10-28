@@ -8,7 +8,7 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xcalib ~/.config/i3/calibrated.icm 
 exec --no-startup-id xfce4-clipman
-exec_always --no-startup-id exec i3-workspace-names-daemon
+#exec_always --no-startup-id exec i3-workspace-names-daemon
 
 # Bluetooth
 exec_always --no-startup-id blueman-applet
@@ -18,9 +18,10 @@ exec_always --no-startup-id blueman-applet
 font pango: SF Pro Display
 
 # Onedrive
-exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: ~/onedrive/
+exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: ~/onedrive/       -v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
 
-exec --no-startup-id rclone --vfs-cache-mode full mount poliMi: ~/onedrivePoliMi/
+exec --no-startup-id rclone --vfs-cache-mode full mount poliMi:   ~/onedrivePoliMi/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrivePoliMi_log
+
 
 # Libinput
 exec --no-startup-id libinput-gestures-setup start
@@ -54,6 +55,9 @@ bindsym --release $mod+Return exec --no-startup-id alacritty
 # power menu
 bindsym $mod+Shift+x exec rofi -show p -modi p:~/.local/bin/rofi-power-menu -theme darkyellow.rasi -lines 6
 
+#search
+bindsym --release $mod+g exec --no-startup-id rofi -lines 10 -padding 0 -show search -modi search:~/.local/bin/rofi-web-search.py -i -p "Search: " -theme darkyellow.rasi
+
 # file manager
 bindsym --release $mod+Shift+Return exec --no-startup-id alacritty -e /usr/local/bin/lfrun
 
@@ -82,21 +86,21 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pcastiglione99/Pictur
 bar {
 	position top
 	#mode hide
-	#tray_output none
+	tray_output none
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 	i3bar_command i3bar -t
 	colors {
-		background #00000000
+		background #00000040
     						#Border     #in 	    #text
-		focused_workspace	#00000040 	#00000040  	#FFFFFF
-		inactive_workspace  #00000000	#00000000	#FFFFFF
+		focused_workspace	#00000070 	#00000070  	#FFFFFF
+		inactive_workspace  #00000040	#00000040	#FFFFFF
 	}
 }
 bindsym $mod+Shift+f bar mode toggle
-#exec --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Border
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 4
 hide_edge_borders smart
 
 # Colors
@@ -109,8 +113,8 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 
 # Gaps
-gaps inner 8
-gaps outer 10
+gaps inner 11
+gaps outer 5
 #smart_gaps on
 
 bindsym $mod+KP_Add gaps inner current plus 5

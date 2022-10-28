@@ -8,9 +8,15 @@ Plug 'lilydjwg/colorizer'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
+
+"Themes
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'sainnhe/sonokai'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Rigellute/rigel'
+Plug 'rakr/vim-one'
 call plug#end()
 
 set number relativenumber
@@ -21,13 +27,31 @@ syntax on
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nnoremap <C-t> :NERDTreeToggle<CR>
 
-"Material Theme
+" Theme
 set termguicolors
-let g:sonokai_terminal_italics = 1
-let g:sonokai_theme_style = 'espresso'
-colorscheme sonokai
-hi Normal guibg=NONE ctermbg=NONE
+colorscheme one
+" Transparency
+highlight Normal guibg=NONE ctermbg=NONE
+highlight CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight clear LineNr
+highlight clear SignColumn
+highlight clear StatusLine
 
+
+" Change Color when entering Insert Mode
+autocmd InsertEnter * set nocursorline
+
+" Revert Color to default when leaving Insert Mode
+autocmd InsertLeave * set nocursorline
+
+"" extra settings, uncomment them if necessary :) 
+"set cursorline
+"set noshowmode
+"set nocursorline
+
+" trasparent end
 "Prettier
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
