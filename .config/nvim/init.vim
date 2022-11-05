@@ -20,6 +20,7 @@ Plug 'rakr/vim-one'
 call plug#end()
 
 set number relativenumber
+set nofoldenable
 set encoding=UTF-8
 set tabstop=4
 set shiftwidth=4

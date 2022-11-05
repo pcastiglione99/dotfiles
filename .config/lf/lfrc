@@ -95,6 +95,20 @@ map au unarchive
 
 cmd remux $ffmpeg -i "$f" -c:v copy -c:a copy "$f"_mux.mp4
 
+cmd md2pdf ${{
+	set -f
+	pandoc --template=GitHub.html5 --embed-resources --standalone "$f" -o "$f".html
+	wkhtmltopdf "$f".html "$f".pdf
+	rm "$f".html
+}}
+
+cmd notebook2pdf ${{
+	set -f
+	jupyter nbconvert --to html "$f" --output "$f"
+	wkhtmltopdf "$f".html "$f".pdf
+	rm "$f".html
+}}
+
 cmd server $python -m http.server
 
 cmd mount 	$udisksctl mount   -b /dev/sda1

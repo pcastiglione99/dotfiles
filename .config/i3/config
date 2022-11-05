@@ -4,21 +4,20 @@ set $mod Mod4
 #exec --no-startup-id setxkbmap -layout it
 #exec --no-startup-id xset r rate 250 60
 exec --no-startup-id ~/.config/i3/xmod.sh
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xcalib ~/.config/i3/calibrated.icm 
 exec --no-startup-id xfce4-clipman
 #exec_always --no-startup-id exec i3-workspace-names-daemon
 
 # Bluetooth
-exec_always --no-startup-id blueman-applet
+#exec_always --no-startup-id blueman-applet
 
 # Font
-#font pango: SF Mono 12
 font pango: SF Pro Display
 
 # Onedrive
-exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: ~/onedrive/       -v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
+exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: ~/onedrive/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
 
 exec --no-startup-id rclone --vfs-cache-mode full mount poliMi:   ~/onedrivePoliMi/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrivePoliMi_log
 
@@ -100,7 +99,7 @@ bindsym $mod+Shift+f bar mode toggle
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Border
-for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] border pixel 3
 hide_edge_borders smart
 
 # Colors
@@ -210,8 +209,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
