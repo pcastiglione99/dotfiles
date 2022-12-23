@@ -10,8 +10,7 @@ _comp_options+=(globdots)		# Include hidden files.
 
 # Load colors
 autoload -U colors && colors
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[cyan]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-PROMPT=" %B%F{#ffc100}@%n%f %F{#FF0D37}%~%f %F{#00C100}%f%b "
+PROMPT="%B%F{#ffc100}@%n%f %F{#FF0D37}%~%f %F{#00C100}%f%b "
 
 stty stop undef		# Disable ctrl-s to freeze terminal.
 

@@ -39,7 +39,7 @@
     horizontal_padding = 16
 
     # Disable frame (border)
-    frame_width = 2
+    frame_width = 0
 
     # Sort messages by urgency.
     sort = no
@@ -143,7 +143,7 @@
     class = Dunst
 
     # Define the corner radius of the notification window
-    #corner_radius = 7
+    #corner_radius = 20
 
     # Don't gnore the dbus closeNotification message.
     ignore_dbusclose = false
