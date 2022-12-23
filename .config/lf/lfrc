@@ -3,9 +3,10 @@ set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
 set shellopts '-eu'
 set ifs "\n"
-
+set icons
 #set hidden true
-
+map m clear
+map t clear
 map <esc> clear
 map <enter> open
 map <f-5> reload
@@ -59,14 +60,19 @@ map D delete
 
 cmd unarchive ${{
     set -f
-    case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-        *.tar.gz|*.tgz) tar xzvf $f;;
-        *.tar.xz|*.txz) tar xJvf $f;;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
-    esac
+	for file in $fx
+	do
+		directory="${file%.*}"
+		mkdir $directory
+    	case $file in
+    	    *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $file;;
+    	    *.tar.gz|*.tgz) tar xzvf $file;;
+    	    *.tar.xz|*.txz) tar xJvf $file;;
+    	    *.zip) unzip $file -d $directory;;
+    	    *.rar) unrar x $file;;
+    	    *.7z) 7z x $file;;
+    	esac
+	done
 }}
 
 # compress current file or selected files with tar and gunzip
@@ -81,32 +87,52 @@ cmd tar ${{
 # compress current file or selected files with zip
 cmd zip ${{
     set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    rm -rf $1
+	name=${1-$(date +"%d-%m-%Y:%H:%M:%S")}
+    mkdir $name
+    cp -r $fx $name
+    zip -r $name.zip $name
+    rm -rf $name
 }}
 
-cmd setwallpaper $cp "$f" ~/Pictures/Wallpapers/wallpaper.jpg
+cmd setwallpaper $cp "$f" ~/Pictures/Wallpapers/wallpaper.png
 
-map az zip
-map at tar
 map au unarchive
 
-cmd remux $ffmpeg -i "$f" -c:v copy -c:a copy "$f"_mux.mp4
+cmd remux ${{ 
+	set -f
+	for file in $fx
+	do
+		ffmpeg -i $file -c:v copy -c:a copy "${file%.*}"_mux.mp4
+	done
+}}
+
 
 cmd md2pdf ${{
 	set -f
-	pandoc --template=GitHub.html5 --embed-resources --standalone "$f" -o "$f".html
-	wkhtmltopdf "$f".html "$f".pdf
-	rm "$f".html
+	for file in $fx
+	do
+		pandoc --template=GitHub.html5 --embed-resources --standalone $file -o $file.html
+		wkhtmltopdf --javascript-delay 3000 $file.html "${file%.*}".pdf
+		rm $file.html
+	done
 }}
 
 cmd notebook2pdf ${{
 	set -f
-	jupyter nbconvert --to html "$f" --output "$f"
-	wkhtmltopdf "$f".html "$f".pdf
-	rm "$f".html
+	for file in $fx
+	do
+		jupyter nbconvert --to html $file --output $file
+		wkhtmltopdf --javascript-delay 3000 --enable-local-file-access $file.html "${file%.*}".pdf
+		rm $file.html
+	done
+}}
+
+cmd html2pdf ${{
+	set -f
+	for file in $fx
+	do
+		wkhtmltopdf --javascript-delay 3000 --enable-local-file-access $file.html "${file%.*}".pdf
+	done
 }}
 
 cmd server $python -m http.server

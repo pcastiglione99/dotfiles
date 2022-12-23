@@ -8,14 +8,11 @@ Plug 'lilydjwg/colorizer'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
+Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 Plug 'preservim/vim-markdown'
-
-"Themes
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-Plug 'sainnhe/sonokai'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Rigellute/rigel'
+"Themes
 Plug 'rakr/vim-one'
 call plug#end()
 
@@ -61,15 +58,14 @@ let g:prettier#autoformat_require_pragma = 0
 filetype plugin indent on
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_method = 'latexmk'
-
 "WordProcessor
 func! WordProcessor()
   Goyo
   set number relativenumber
   set tw=80
   " movement changes
-  "map j gj
-  "map k gk
+  map j gj
+  map k gk
   " formatting text
   setlocal formatoptions=1
   setlocal noexpandtab
