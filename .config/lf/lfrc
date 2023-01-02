@@ -56,7 +56,7 @@ cmd delete ${{
  }}
 
 map <delete> trash
-map D delete
+map D trash
 
 cmd unarchive ${{
     set -f
