@@ -19,8 +19,7 @@
 window {
     location:   center;
     width:      580;
-    y-offset:   -160;
-    border: 3px;
+    y-offset:   -90;
     background-color:   #000000C0;
 }
 

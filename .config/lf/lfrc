@@ -29,7 +29,7 @@ cmd terminal $nohup alacritty > /dev/null &
 cmd open ${{
     test -L $f && f=$(readlink -f $f)
     case $(file --mime-type $f -b) in
-        image/*) nohup feh --scale-down --auto-zoom $fx > /dev/null &;;
+        image/*) nohup feh --scale-down --auto-zoom --start-at $f ./ -d > /dev/null &;;
         text/html) firefox $fx;;
         text/*) nvim $fx;;
         video/*) nohup mpv $fx > /dev/null &;;

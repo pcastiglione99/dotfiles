@@ -7,7 +7,7 @@ set $mod Mod4
 #exec --no-startup-id nm-applet
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id xcalib ~/.config/i3/calibrated.icm
-exec --no-startup-id xfce4-clipman
+exec_always --no-startup-id xfce4-clipman
 #exec_always --no-startup-id exec i3-workspace-names-daemon
 exec --no-startup-id xautolock -time 10 -locker '~/.local/bin/xautolock_suspend'
 # Bluetooth
@@ -88,7 +88,7 @@ bar {
 	font pango:SF Pro Display, FontAwesome
 	position top
 	#mode hide
-	tray_output none
+	#tray_output none
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 	i3bar_command i3bar -t
 	colors {
