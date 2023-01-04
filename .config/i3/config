@@ -57,7 +57,7 @@ bindsym $mod+Shift+Tab workspace prev
 bindsym --release $mod+Return exec --no-startup-id alacritty
 
 # power menu
-bindsym $mod+Shift+x exec rofi -show -p -modi p:~/.local/bin/rofi-power-menu -theme darkyellow.rasi -lines 6
+bindsym $mod+Shift+x exec rofi -show p -modi p:~/.local/bin/rofi-power-menu -theme darkyellow.rasi -lines 6
 
 bindsym $mod+g exec echo -n "" | rofi -dmenu -p "Search:" -theme darkyellow.rasi -lines 0| xargs -I{} xdg-open 'https://www.google.de/search?q={}'
 
