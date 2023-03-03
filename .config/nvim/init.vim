@@ -12,20 +12,56 @@ Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 Plug 'preservim/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Themes
 Plug 'rakr/vim-one'
 call plug#end()
+
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 
 set number relativenumber
 set nofoldenable
 set encoding=UTF-8
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 syntax on
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-nnoremap <C-t> :NERDTreeToggle<CR>
 
-" Theme
+" ++++++++++ NERDTree +++++++++++++++++++
+inoremap <c-b> <Esc>:NERDTreeToggle<cr>
+nnoremap <c-b> <Esc>:NERDTreeToggle<cr>
+" +++++++++++++++++++++++++++++++++++++++
+
+" +++++++++++ Terminal +++++++++++++++++++++++++++++++++++
+noremap <c-t> <Esc>:below 10sp<cr> \| <ESC>:terminal<cr> i
+inoremap <c-t> <Esc>:below 10sp<cr> \| <ESC>:terminal<cr> i
+tnoremap <c-t> <c-\><c-n> :q!<cr>
+" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+"++++++++ CoC <Tab> completion ++++++++++
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+"++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+"+++++++++++++++++++ Theme +++++++++++++++
 set termguicolors
 colorscheme one
 " Transparency
@@ -37,24 +73,31 @@ highlight clear LineNr
 highlight clear SignColumn
 highlight clear StatusLine
 
-
 " Change Color when entering Insert Mode
 autocmd InsertEnter * set nocursorline
-
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * set nocursorline
-
 "" extra settings, uncomment them if necessary :) 
 "set cursorline
 "set noshowmode
 "set nocursorline
-
 " trasparent end
-"Prettier
+" +++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+" +++++++++ Prettier ++++++++++++++++++
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
+" ++++++++++++++++++++++++++++++++++++++
 
-"VimTex
+
+
+
+
+
+" ++++++++++ VimTex +++++++++++++++++++++++++
 filetype plugin indent on
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_method = 'latexmk'
@@ -78,3 +121,4 @@ func! WordProcessor()
   set complete+=s
 endfu
 com! WP call WordProcessor()
+" +++++++++++++++++++++++++++++++++++++++++++

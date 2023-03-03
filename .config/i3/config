@@ -7,7 +7,7 @@ set $mod Mod4
 #exec --no-startup-id nm-applet
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id xcalib ~/.config/i3/calibrated.icm
-exec_always --no-startup-id xfce4-clipman
+exec --no-startup-id xfce4-clipman
 #exec_always --no-startup-id exec i3-workspace-names-daemon
 exec --no-startup-id xautolock -time 10 -locker '~/.local/bin/xautolock_suspend'
 # Bluetooth
@@ -26,13 +26,13 @@ exec --no-startup-id rclone --vfs-cache-mode full mount poliMi:   ~/onedrivePoli
 exec --no-startup-id libinput-gestures-setup start
 
 # Audio
-#bindsym XF86AudioMute			exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+10 i3blocks
-#bindsym XF86AudioLowerVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+10 i3blocks
-#bindsym XF86AudioRaiseVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioMute			exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
+#bindsym XF86AudioLowerVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
+#bindsym XF86AudioRaiseVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
 
-bindsym $mod+F1		exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
-bindsym $mod+F2 	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
-bindsym $mod+F3 	exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
+bindsym $mod+F1				exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
+bindsym $mod+F2 				exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
+bindsym $mod+F3 				exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
 
 # Brightness
 bindsym XF86ScreenSaver 		exec --no-startup-id ~/.local/bin/toggle_screen
@@ -86,7 +86,7 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pcastiglione99/Pictur
 
 
 bar {
-	font pango:SF Pro Display, FontAwesome
+	font pango:SF Pro Display, FontAwesome 10
 	position top
 	#mode hide
 	#tray_output none
@@ -103,9 +103,8 @@ bindsym $mod+Shift+f bar mode toggle
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Border
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 2
 hide_edge_borders smart
-
 # Colors
 # class                 border  bground text    indicator child_border
 client.focused          #ffc100 #ffc100 #000000 #ffc100   #ffc100
@@ -240,3 +239,4 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+

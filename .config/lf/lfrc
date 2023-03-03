@@ -11,6 +11,7 @@ map <esc> clear
 map <enter> open
 map <f-5> reload
 
+
 # dedicated keys for file opener actions
 map o &mimeopen $f
 map O $mimeopen --ask $f
@@ -22,7 +23,7 @@ map gt cd ~/.local/share/Trash/files
 map gh cd 
 map gp cd ~/Pictures
 map gd cd ~/Downloads
-map <a-t> terminal
+map <c-t> terminal
 cmd mkdir %mkdir "$@"
 cmd terminal $nohup alacritty > /dev/null &
 
@@ -38,13 +39,16 @@ cmd open ${{
     esac
 }}
 
+cmd clipboard ${{
+	cat $f | xclip -selection c
+}}
 
 cmd trash ${{
     set -f
     printf "$fx\n"
     printf "move to trash?[y/n]"
     read ans
-    [ $ans = "y" ] && gio trash $fx
+    [ $ans = "y" ] || [ $ans = ""] && gio trash $fx || :
 }}
 
 cmd delete ${{
@@ -57,7 +61,9 @@ cmd delete ${{
 
 map <delete> trash
 map D trash
-
+cmd empty_trash ${{
+	gio trash --empty
+}}
 cmd unarchive ${{
     set -f
 	for file in $fx

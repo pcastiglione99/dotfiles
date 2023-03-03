@@ -1,8 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
-#isMute=$(pamixer --get-mute) 
-#volume=$(pamixer --get-volume)
+[[ $button ]] \
+	&& $([[ $(pactl info | grep "analog") ]] \
+		&& $(pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo) \
+		|| $(pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:analog-stereo))
 
-#[[ $isMute == "true" ]] && echo " mute" || echo " $volume%"
+[[ $(pactl info | grep "hdmi") ]] && out=" hdmi" || out=""
 
-[[ $(pamixer --get-mute) == "true" ]] && echo " mute" || echo " $(pamixer --get-volume)%"
+[[ $(pactl list sinks | grep "Mute: yes") ]] && echo " mute$out" || echo " $(pactl list sinks | grep -m 1 "Volume:" | awk '{print $5}')$out"
+
+#[[ $(pamixer --get-mute) == "true" ]] && echo " mute$out" || echo " $(pamixer --get-volume)%$out"
+
