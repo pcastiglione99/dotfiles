@@ -13,8 +13,8 @@ Plug 'preservim/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'rakr/vim-one'
+Plug 'stevearc/vim-arduino'
 call plug#end()
-
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -25,10 +25,6 @@ map <C-l> <C-W>l
 set number relativenumber
 set nofoldenable
 set encoding=UTF-8
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
 syntax on
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
@@ -38,8 +34,8 @@ nnoremap <c-b> <Esc>:NERDTreeToggle<cr>
 " +++++++++++++++++++++++++++++++++++++++
 
 " +++++++++++ Terminal +++++++++++++++++++++++++++++++++++
-noremap <c-t> <Esc>:below 10sp<cr> \| <ESC>:terminal<cr> i
-inoremap <c-t> <Esc>:below 10sp<cr> \| <ESC>:terminal<cr> i
+noremap <c-t> <Esc>:below 10sp<cr> \| <ESC>:terminal<cr> \| <ESC>:set norelativenumber<cr> \| <ESC>:set nonumber<cr> i
+inoremap <c-t> <Esc>:below 10sp<cr> \| <ESC>:terminal<cr> \| <ESC>:set norelativenumber<cr> \| <ESC>:set nonumber<cr> i
 tnoremap <c-t> <c-\><c-n> :q!<cr>
 " ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -55,9 +51,6 @@ inoremap <silent><expr> <Tab>
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 "++++++++++++++++++++++++++++++++++++++++
-
-
-
 
 
 
@@ -82,9 +75,10 @@ autocmd InsertLeave * set nocursorline
 "set noshowmode
 "set nocursorline
 " trasparent end
+
+let g:airline_theme='simple'
+
 " +++++++++++++++++++++++++++++++++++++++++++++++
-
-
 
 
 " +++++++++ Prettier ++++++++++++++++++
@@ -93,8 +87,8 @@ let g:prettier#autoformat_require_pragma = 0
 " ++++++++++++++++++++++++++++++++++++++
 
 
-
-
+let g:arduino_dir = '/home/pcastiglione99/.config/arduino15'
+let g:arduino_home_dir = '/home/pcastiglione99/.config/arduino15'
 
 
 " ++++++++++ VimTex +++++++++++++++++++++++++

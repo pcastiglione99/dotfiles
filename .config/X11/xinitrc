@@ -1,6 +1,4 @@
 /home/pcastiglione99/.local/bin/external_screen &
-xset r rate 250 60 &
-setxkbmap -layout it &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
 unclutter &

@@ -18,7 +18,7 @@ map O $mimeopen --ask $f
 
 #navigation
 map gm cd /run/media/pcastiglione99/DATA
-map gu cd ~/onedrivePoliMi/Universita/Magistrale/Year2/Semester1
+map gu cd ~/onedrivePoliMi/Universita/Magistrale/Year2/Semester2
 map gt cd ~/.local/share/Trash/files
 map gh cd 
 map gp cd ~/Pictures

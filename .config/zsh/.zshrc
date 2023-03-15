@@ -18,7 +18,9 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
+setopt appendhistory
 setopt incappendhistory
+setopt sharehistory
 setopt HIST_IGNORE_ALL_DUPS
 
 bindkey -e

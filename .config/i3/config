@@ -1,6 +1,7 @@
 #Use Windows Button as mod
 set $mod Mod4
-
+exec_always --no-startup-id xset r rate 250 60
+exec_always --no-startup-id setxkbmap -layout it
 #exec --no-startup-id setxkbmap -layout it
 #exec --no-startup-id xset r rate 250 60
 #exec --no-startup-id ~/.config/i3/xmod.sh
