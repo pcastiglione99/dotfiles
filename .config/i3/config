@@ -20,7 +20,7 @@ font pango: SF Pro Display
 # Onedrive
 exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: ~/onedrive/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
 
-exec --no-startup-id rclone --vfs-cache-mode full mount poliMi:   ~/onedrivePoliMi/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrivePoliMi_log
+exec --no-startup-id rclone --vfs-cache-mode full mount onedrivePoliMi:   ~/onedrivePoliMi/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrivePoliMi_log
 
 
 # Libinput
@@ -80,7 +80,7 @@ bindsym --release $mod+Shift+o exec --no-startup-id ~/.local/bin/ocr
 #bindsym --release $mod+Shift+s exec --no-startup-id /usr/local/bin/screen_ts.sh
 
 #Picom
-exec_always --no-startup-id picom
+exec_always --no-startup-id picom -b
 
 # WallPaper
 exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pcastiglione99/Pictures/Wallpapers/wallpaper.png
