@@ -13,7 +13,7 @@ map <f-5> reload
 
 
 # dedicated keys for file opener actions
-map o &mimeopen $f
+map o $mimeopen $f
 map O $mimeopen --ask $f
 
 #navigation
@@ -27,13 +27,21 @@ map <c-t> terminal
 cmd mkdir %mkdir "$@"
 cmd terminal $nohup alacritty > /dev/null &
 
+cmd pdfflat ${{
+    set -f
+    for file in $fx
+    do
+        convert -density 180 $file "${file%.*}"_flat.pdf
+    done
+}}
+
 cmd open ${{
     test -L $f && f=$(readlink -f $f)
     case $(file --mime-type $f -b) in
-        image/*) nohup feh --scale-down --auto-zoom --start-at $f ./ -d > /dev/null &;;
+        image/*) nohup feh --image-bg black --scale-down --auto-zoom --start-at $f ./ -d > /dev/null &;;
         text/html) firefox $fx;;
         text/*) nvim $fx;;
-        video/*) nohup mpv $fx > /dev/null &;;
+        video/*) nohup mpv $fx >> /dev/null &;;
         application/pdf) nohup zathura $fx > /dev/null &;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
@@ -48,7 +56,7 @@ cmd trash ${{
     printf "$fx\n"
     printf "move to trash?[y/n]"
     read ans
-    [ $ans = "y" ] || [ $ans = ""] && gio trash $fx || :
+    [[ $ans = "y" || $ans = "" ]] && gio trash $fx
 }}
 
 cmd delete ${{
@@ -56,7 +64,7 @@ cmd delete ${{
      printf "$fx\n"
      printf "delete?[y/n]"
      read ans
-     [ $ans = "y" ] && rm -rf $fx
+     [[ $ans = "y" || $ans = "" ]] && rm -rf $fx
  }}
 
 map <delete> trash
@@ -143,5 +151,9 @@ cmd html2pdf ${{
 
 cmd server $python -m http.server
 
+#cmd mount 	$sudo mount /dev/sda1 /mnt/Data
+#cmd unmount $sudo umount /dev/sda1
 cmd mount 	$udisksctl mount   -b /dev/sda1
 cmd unmount $udisksctl unmount -b /dev/sda1
+
+

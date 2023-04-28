@@ -1,9 +1,10 @@
 #!/bin/env sh
 
+card=$(pactl list cards short | awk '{print $2}' | head -n 1) &&
 [[ $button ]] \
 	&& $([[ $(pactl info | grep "analog") ]] \
-		&& $(pactl set-card-profile alsa_card.pci-0000_00_1f.3.3 output:hdmi-stereo) \
-		|| $(pactl set-card-profile alsa_card.pci-0000_00_1f.3.3 output:analog-stereo))
+		&& $(pactl set-card-profile $card output:hdmi-stereo) \
+		|| $(pactl set-card-profile $card output:analog-stereo))
 
 [[ $(pactl info | grep "hdmi") ]] && out=" hdmi" || out=""
 

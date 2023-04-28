@@ -9,10 +9,10 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
 Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'rakr/vim-one'
 Plug 'stevearc/vim-arduino'
 call plug#end()
 
@@ -55,21 +55,23 @@ inoremap <silent><expr> <Tab>
 
 
 "+++++++++++++++++++ Theme +++++++++++++++
+" Vim Script
 set termguicolors
-colorscheme one
+colorscheme tokyonight-night
+
 " Transparency
-highlight Normal guibg=NONE ctermbg=NONE
-highlight CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE
-highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
-highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE
-highlight clear LineNr
-highlight clear SignColumn
-highlight clear StatusLine
+"highlight Normal guibg=NONE ctermbg=NONE
+"highlight CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE
+"highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
+"highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE
+"highlight clear LineNr
+"highlight clear SignColumn
+"highlight clear StatusLine
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * set nocursorline
+"autocmd InsertEnter * set nocursorline
 " Revert Color to default when leaving Insert Mode
-autocmd InsertLeave * set nocursorline
+"autocmd InsertLeave * set nocursorline
 "" extra settings, uncomment them if necessary :) 
 "set cursorline
 "set noshowmode
