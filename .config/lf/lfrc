@@ -12,6 +12,10 @@ map <enter> open
 map <f-5> reload
 
 
+
+map br $vimv $fx
+
+
 # dedicated keys for file opener actions
 map o $mimeopen $f
 map O $mimeopen --ask $f
@@ -26,6 +30,11 @@ map gd cd ~/Downloads
 map <c-t> terminal
 cmd mkdir %mkdir "$@"
 cmd terminal $nohup alacritty > /dev/null &
+
+
+cmd clear_unselect ${{
+    unselect
+}}
 
 cmd pdfflat ${{
     set -f

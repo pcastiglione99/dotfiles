@@ -21,6 +21,8 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+map j gj
+map k gk
 
 set number relativenumber
 set nofoldenable
@@ -97,6 +99,19 @@ let g:arduino_home_dir = '/home/pcastiglione99/.config/arduino15'
 filetype plugin indent on
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_compiler_latexmk_engines = {'_': '-xelatex'}
+let g:vimtex_compiler_latexmk = {
+            \ 'options' : [
+                \   '-shell-escape',
+                \   '-verbose',
+                \   '-file-line-error',
+                \   '-synctex=1',
+                \   '-interaction=nonstopmode',
+                \ ],
+                \}
+let g:vimtex_syntax_packages = {'minted': {'load': 2}}
+
+
 "WordProcessor
 func! WordProcessor()
   Goyo

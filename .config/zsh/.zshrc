@@ -21,7 +21,13 @@ HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 setopt appendhistory
 setopt incappendhistory
 setopt sharehistory
+setopt HIST_REDUCE_BLANKS
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
 
 bindkey -e
 bindkey "^[[1;5C" forward-word

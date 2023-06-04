@@ -20,7 +20,7 @@ batorcat() {
 	fi
 }
 
-CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
+CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
 
 case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.tgz|*.tar.gz) tar tzf "$1" ;;
@@ -35,10 +35,13 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.torrent) transmission-show "$1" ;;
 	*.iso) iso-info --no-header -l "$1" ;;
 	*.odt|*.ods|*.odp|*.sxw) odt2txt "$1" ;;
-	*.doc) catdoc "$1" ;;
-	*.docx) docx2txt "$1" - ;;
-	*.xls|*.xlsx)
-		ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | batorcat --language=csv
+  *.doc|*.docx|*.xls|*.xlsx)
+		[ ! -f "${CACHE}.jpg" ] && \
+			file="${1##*/}" && \
+			file="${file%%.*}" && \
+			libreoffice --convert-to jpg "$1" --outdir $HOME/.cache/lf > /dev/null && \
+			mv $HOME/.cache/lf/"$file".jpg "$CACHE".jpg 
+			image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
 		exiftool "$1"

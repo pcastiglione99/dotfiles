@@ -2,6 +2,7 @@
 set $mod Mod4
 exec_always --no-startup-id xset r rate 250 60
 exec_always --no-startup-id setxkbmap -layout it
+#exec --no-startup-id xborders -c ~/.config/i3/xborders.json
 #exec --no-startup-id setxkbmap -layout it
 #exec --no-startup-id xset r rate 250 60
 #exec --no-startup-id ~/.config/i3/xmod.sh
@@ -104,7 +105,7 @@ bindsym $mod+Shift+f bar mode toggle
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Border
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 2
 hide_edge_borders smart
 
 # Colors
