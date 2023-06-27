@@ -16,7 +16,7 @@ exec --no-startup-id xautolock -time 10 -locker '~/.local/bin/xautolock_suspend'
 #exec_always --no-startup-id blueman-applet
 
 # Font
-font pango: SF Pro Display 12
+font pango: SFMonoNerdFontMono 12
 
 # Onedrive
 exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: ~/onedrive/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log

@@ -50,6 +50,7 @@ cmd open ${{
         image/*) nohup feh --image-bg black --scale-down --auto-zoom --start-at $f ./ -d > /dev/null &;;
         text/html) firefox $fx;;
         text/*) nvim $fx;;
+        tex) nvim $fx;;
         video/*) nohup mpv $fx >> /dev/null &;;
         application/pdf) nohup zathura $fx > /dev/null &;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;

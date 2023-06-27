@@ -7,6 +7,10 @@ battery_status=$(cat /sys/class/power_supply/BAT1/status)
 if [ $capacity -lt 15 ] 
 then
 	indicator= 
+	if [ $capacity -eq 14 ] && [ $battery_status = 'Discharging' ]
+	then
+		notify-send -u critical -a "Battery status" "Low Battery Level" 
+	fi
 elif [ $capacity -lt 30 ]
 then
 	indicator=
@@ -22,3 +26,4 @@ fi
 
 [ $battery_status != 'Discharging' ] && echo " $capacity%" || 
 echo "$indicator $capacity%"
+
