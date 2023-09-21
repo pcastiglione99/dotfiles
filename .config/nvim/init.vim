@@ -8,6 +8,7 @@ Plug 'lilydjwg/colorizer'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
+Plug 'preservim/vim-pencil'
 Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
@@ -106,10 +107,12 @@ let g:arduino_home_dir = '/home/pcastiglione99/.config/arduino15'
 
 " ++++++++++ VimTex +++++++++++++++++++++++++
 filetype plugin indent on
-let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_method = 'sioyek'
 let g:vimtex_compiler_method = 'latexmk'
 let g:vimtex_compiler_latexmk_engines = {'_': '-xelatex'}
 let g:vimtex_compiler_latexmk = {
+            \ 'aux_dir': {-> expand("%:t:r")},
+            \ 'out_dir': {-> expand("%:t:r")},
             \ 'options' : [
                 \   '-shell-escape',
                 \   '-verbose',
@@ -124,7 +127,7 @@ let g:vimtex_syntax_packages = {'minted': {'load': 2}}
 "WordProcessor
 func! WordProcessor()
   Goyo
-  set number relativenumber
+"  set number relativenumber
   set tw=80
   " movement changes
   map j gj

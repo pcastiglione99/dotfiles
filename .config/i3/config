@@ -2,16 +2,16 @@
 set $mod Mod4
 exec_always --no-startup-id xset r rate 250 60
 exec_always --no-startup-id setxkbmap -layout it
+exec --no-startup-id xset dpms 0 0 0
 #exec --no-startup-id xborders -c ~/.config/i3/xborders.json
 #exec --no-startup-id setxkbmap -layout it
-#exec --no-startup-id xset r rate 250 60
 #exec --no-startup-id ~/.config/i3/xmod.sh
 #exec --no-startup-id nm-applet
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id xcalib ~/.config/i3/calibrated.icm
 exec --no-startup-id xfce4-clipman
 #exec_always --no-startup-id exec i3-workspace-names-daemon
-exec --no-startup-id xautolock -time 10 -locker '~/.local/bin/xautolock_suspend'
+#exec --no-startup-id xautolock -time 10 -locker '~/.local/bin/xautolock_suspend'
 # Bluetooth
 #exec_always --no-startup-id blueman-applet
 
@@ -65,7 +65,7 @@ bindsym $mod+g exec echo -n "" | rofi -dmenu -p "Search:" -theme darkyellow.rasi
 
 # file manager
 bindsym --release $mod+Shift+Return exec --no-startup-id alacritty -e lfrun
-bindsym --release $mod+Shift+t exec --no-startup-id pcmanfm
+bindsym --release $mod+Shift+t exec --no-startup-id thunar
 
 # kill focused window
 bindsym --release $mod+Shift+q kill
