@@ -1,29 +1,27 @@
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lilydjwg/colorizer'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'lervag/vimtex'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'
-Plug 'preservim/vim-pencil'
-Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'stevearc/vim-arduino'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 call plug#end()
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+"nnoremap <leader>ff <cmd>Telescope find_files<cr>
+"nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+"nnoremap <leader>fb <cmd>Telescope buffers<cr>
+"nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 map <C-j> <C-W>j
@@ -63,8 +61,6 @@ inoremap <silent><expr> <Tab>
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 "++++++++++++++++++++++++++++++++++++++++
-
-
 
 "+++++++++++++++++++ Theme +++++++++++++++
 " Vim Script
@@ -123,10 +119,9 @@ let g:vimtex_compiler_latexmk = {
                 \}
 let g:vimtex_syntax_packages = {'minted': {'load': 2}}
 
-
 "WordProcessor
 func! WordProcessor()
-  Goyo
+  "Goyo
 "  set number relativenumber
   set tw=80
   " movement changes
@@ -139,7 +134,7 @@ func! WordProcessor()
   setlocal linebreak
   " spelling and thesaurus
   setlocal spell spelllang=en_us
-  set thesaurus+=/home/test/.vim/thesaurus/mthesaur.txt
+  set thesaurus+=~/.config/nvim/thesaurus/mthesaur.txt
   " complete+=s makes autocompletion search the thesaurus
   set complete+=s
 endfu

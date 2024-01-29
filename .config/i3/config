@@ -2,8 +2,8 @@
 set $mod Mod4
 exec_always --no-startup-id xset r rate 250 60
 exec_always --no-startup-id setxkbmap -layout it
-exec --no-startup-id xset dpms 0 0 0
-#exec --no-startup-id xborders -c ~/.config/i3/xborders.json
+#exec --no-startup-id xset dpms 0 0 0
+exec_always --no-startup-id xborders -c ~/.config/i3/xborders.json
 #exec --no-startup-id setxkbmap -layout it
 #exec --no-startup-id ~/.config/i3/xmod.sh
 #exec --no-startup-id nm-applet
@@ -19,10 +19,11 @@ exec --no-startup-id xfce4-clipman
 font pango: SFMonoNerdFontMono 12
 
 # Onedrive
-exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: ~/onedrive/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
+exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: 			~/onedrive/ 			-v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
 
-exec --no-startup-id rclone --vfs-cache-mode full mount onedrivePoliMi:   ~/onedrivePoliMi/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrivePoliMi_log
+exec --no-startup-id rclone --vfs-cache-mode full mount onedrivePolimi:Universita ~/onedrivePolimi/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrivePolimi_log
 
+exec --no-startup-id rclone --vfs-cache-mode full mount GoogleDrive: 		~/GoogleDrive/ 		-v --log-file=$XDG_CACHE_HOME/rclone/GoogleDrive_log
 
 # Libinput
 exec --no-startup-id libinput-gestures-setup start
@@ -105,7 +106,7 @@ bindsym $mod+Shift+f bar mode toggle
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Border
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 hide_edge_borders smart
 
 # Colors
@@ -130,6 +131,8 @@ bindsym $mod+Shift+KP_Subtract gaps outer current minus 5
 
 # start rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme darkyellow.rasi
+bindsym $mod+e exec --no-startup-id rofi -show filebrowser -theme darkyellow.rasi
+bindsym $mod+c exec --no-startup-id rofi -show calc -theme darkyellow.rasi
 
 #start firefox
 bindsym $mod+w exec --no-startup-id firefox

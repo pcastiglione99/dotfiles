@@ -34,8 +34,8 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.o) nm "$1";;
 	*.torrent) transmission-show "$1" ;;
 	*.iso) iso-info --no-header -l "$1" ;;
-	*.odt|*.ods|*.odp|*.sxw) odt2txt "$1" ;;
-  *.doc|*.docx|*.xls|*.xlsx)
+	#*.odt|*.ods|*.odp|*.sxw) odt2txt "$1" ;;
+  *.doc|*.docx|*.xls|*.xlsx|*.ods|*.odt|*.odp)
 		[ ! -f "${CACHE}.jpg" ] && \
 			file="${1##*/}" && \
 			file="${file%%.*}" && \

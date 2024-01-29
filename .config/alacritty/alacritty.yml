@@ -6,7 +6,7 @@ window:
   opacity: 1
 font:
   normal:
-    family: SFMonoNerdFontMono
+    family: monospace
     style: Medium
 colors:
   # Default colors

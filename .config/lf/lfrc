@@ -1,4 +1,5 @@
 # interpreter for shell commands
+set period 1
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
 set shellopts '-eu'
@@ -52,7 +53,7 @@ cmd open ${{
         text/*) nvim $fx;;
         tex) nvim $fx;;
         video/*) nohup mpv $fx >> /dev/null &;;
-        application/pdf) nohup sioyek  $fx > /dev/null &;;
+        application/pdf) nohup sioyek $fx > /dev/null &;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}

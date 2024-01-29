@@ -11,9 +11,12 @@ export VISUAL="nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export VIDEO="mpv"
-export IMAGE="eog"
+export IMAGE="feh"
 
 # Fixing Paths
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
