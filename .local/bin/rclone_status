@@ -1,0 +1,13 @@
+#!/bin/env sh
+
+echo "";
+while true;
+do
+	inotifywait -qq -e modify $1
+	line=$(tail -n1 $1)
+	if echo $line | grep -e "uploading [1-9]" -e "queuing for upload"; then
+		echo ""
+	else
+		echo ""
+	fi
+done

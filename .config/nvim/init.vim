@@ -6,15 +6,12 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'lilydjwg/colorizer'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'lervag/vimtex'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'stevearc/vim-arduino'
-Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 call plug#end()
 
 " Find files using Telescope command-line sugar.
@@ -29,8 +26,11 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+
 map j gj
 map k gk
+map <Down> gj
+map <Up> gk
 
 set number relativenumber
 set nofoldenable
@@ -105,7 +105,7 @@ let g:arduino_home_dir = '/home/pcastiglione99/.config/arduino15'
 filetype plugin indent on
 let g:vimtex_view_method = 'sioyek'
 let g:vimtex_compiler_method = 'latexmk'
-let g:vimtex_compiler_latexmk_engines = {'_': '-xelatex'}
+let g:vimtex_compiler_latexmk_engines = {'_': '-pdflatex' }  " '-xelatex'}
 let g:vimtex_compiler_latexmk = {
             \ 'aux_dir': {-> expand("%:t:r")},
             \ 'out_dir': {-> expand("%:t:r")},

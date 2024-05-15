@@ -9,4 +9,6 @@ mogrify -modulate 100,0 -resize 400% $SCR_IMG.png
 #tesseract -l ita $SCR_IMG.png $SCR_IMG &> /dev/null
 tesseract $SCR_IMG.png $SCR_IMG &> /dev/null
 tr -d "\n\r" < $SCR_IMG.txt | xsel -bi
+ciao=$(xsel -b)
+dunstify -a "Text Scanned" "$ciao"
 exit

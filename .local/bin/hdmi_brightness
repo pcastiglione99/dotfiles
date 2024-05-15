@@ -1,0 +1,10 @@
+#!/bin/env sh
+
+brightness=$(ddccontrol -r 0x10 dev:/dev/i2c-0 2>&- | grep -oP 'Control 0x10: \+\/\K(\d+)')
+
+[[ $button ]] \
+	&& [[ $brightness -eq 0 ]] && $(ddccontrol -r 0x10 -w 50 dev:/dev/i2c-0 >&- 2>&-) \
+		|| ddccontrol -r 0x10 -w 0 dev:/dev/i2c-0 >&- 2>&-
+
+brightness=$(ddccontrol -r 0x10 dev:/dev/i2c-0 2>&- | grep -oP 'Control 0x10: \+\/\K(\d+)')
+echo $brightness

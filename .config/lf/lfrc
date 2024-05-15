@@ -142,6 +142,15 @@ cmd md2pdf ${{
 	done
 }}
 
+cmd fatture2pdf ${{
+	set -f
+	for file in $fx
+	do
+    xml_to_pdf $file
+	done
+}}
+
+
 cmd notebook2pdf ${{
 	set -f
 	for file in $fx

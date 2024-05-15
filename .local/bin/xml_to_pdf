@@ -1,0 +1,8 @@
+#!/bin/sh
+
+STYLE=~/.local/bin/FoglioStileItalwork.xsl
+xsltproc $STYLE $1 > $(echo $1 | sed 's/\.xml/\.html/') 
+
+wkhtmltopdf -q $(echo $1 | sed 's/\.xml/\.html/') $(echo $1 | sed 's/\.xml/\.pdf/')
+
+rm $(echo $1 | sed 's/\.xml/\.html/')

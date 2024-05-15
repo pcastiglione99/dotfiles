@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for x in $(grep enabled /proc/acpi/wakeup | cut -f1 | grep -v PWRB | grep -v platform)
+do
+  echo $x | sudo tee /proc/acpi/wakeup
+done

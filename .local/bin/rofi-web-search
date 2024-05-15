@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+
+query=$( (echo ) | rofi  -dmenu -p "Search > " -theme darkyellow.rasi)
+
+if [[ -n "$query" ]]; then
+      url="https://www.google.com/search?q="$query
+      xdg-open "$url"
+    else
+      exit
+fi
