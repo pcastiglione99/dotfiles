@@ -3,6 +3,7 @@
 STYLE=~/.local/bin/FoglioStileItalwork.xsl
 xsltproc $STYLE $1 > $(echo $1 | sed 's/\.xml/\.html/') 
 
-wkhtmltopdf -q $(echo $1 | sed 's/\.xml/\.html/') $(echo $1 | sed 's/\.xml/\.pdf/')
+#wkhtmltopdf -q $(echo $1 | sed 's/\.xml/\.html/') $(echo $1 | sed 's/\.xml/\.pdf/')
+node ~/.local/bin/html_to_pdf/html_to_pdf.js $(echo $1 | sed 's/\.xml/\.html/') 
 
 rm $(echo $1 | sed 's/\.xml/\.html/')
