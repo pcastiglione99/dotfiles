@@ -4,14 +4,19 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lilydjwg/colorizer'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'lervag/vimtex'
+ Plug 'prettier/vim-prettier', {
+      \ 'do': 'yarn install',
+      \ 'for': ['javascript', 'typescript', 'typescriptreact', 'javascriptreact'] }
 Plug 'junegunn/goyo.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'preservim/vim-markdown'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'stevearc/vim-arduino'
+Plug 'z3t0/arduvim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " Find files using Telescope command-line sugar.
@@ -20,6 +25,10 @@ call plug#end()
 "nnoremap <leader>fb <cmd>Telescope buffers<cr>
 "nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -97,8 +106,8 @@ let g:prettier#autoformat_require_pragma = 0
 " ++++++++++++++++++++++++++++++++++++++
 
 
-let g:arduino_dir = '/home/pcastiglione99/.config/arduino15'
-let g:arduino_home_dir = '/home/pcastiglione99/.config/arduino15'
+let g:arduino_dir = '/home/pcastiglione99/.arduino15'
+let g:arduino_home_dir = '/home/pcastiglione99/.arduino15'
 
 
 " ++++++++++ VimTex +++++++++++++++++++++++++

@@ -29,11 +29,9 @@ alias svn="svn --config-dir \"$XDG_CONFIG_HOME\"/subversion"
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'
 # Path
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
-
 export LS_COLORS="\
 ln=01;36:\
 ow=01;96:\

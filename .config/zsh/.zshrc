@@ -12,7 +12,7 @@ _comp_options+=(globdots)		# Include hidden files.
 autoload -U colors && colors
 PROMPT="%B%F{#ffc100}@%n%f %F{#FF0D37}%~%f %F{#00C100}%f%b "
 
-stty stop undef		# Disable ctrl-s to freeze terminal.
+#stty stop undef		# Disable ctrl-s to freeze terminal.
 
 # History in cache directory:
 HISTSIZE=10000000
