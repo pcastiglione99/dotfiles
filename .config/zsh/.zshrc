@@ -47,3 +47,4 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev
 alias ls='ls --color=auto'
 alias trash='gio trash'
 alias ec-probe='mono /opt/nbfc/ec-probe.exe'
+

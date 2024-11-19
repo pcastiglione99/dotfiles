@@ -77,13 +77,13 @@ set termguicolors
 colorscheme tokyonight-night
 
 " Transparency
-"highlight Normal guibg=NONE ctermbg=NONE
-"highlight CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE
-"highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
-"highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE
-"highlight clear LineNr
-"highlight clear SignColumn
-"highlight clear StatusLine
+highlight Normal guibg=NONE ctermbg=NONE
+highlight CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight clear LineNr
+highlight clear SignColumn
+highlight clear StatusLine
 
 " Change Color when entering Insert Mode
 "autocmd InsertEnter * set nocursorline

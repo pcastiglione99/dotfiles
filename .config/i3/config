@@ -18,15 +18,24 @@ exec --no-startup-id xfce4-clipman
 
 #Sway
 exec --no-startup-id dunst
-#blur enable
-#corner_radius 10
-#shadows enable
+blur enable
+corner_radius 10
+shadows enable
 input type:keyboard {
     xkb_layout "it"
     repeat_delay 250
     repeat_rate 60
 }
+input type:touchpad {
+	tap enabled
+	natural_scroll enabled
+}
+exec --no-startup-id /home/pcastiglione99/.local/bin/external_screen
 exec --no-startup-id "swaybg -i /home/pcastiglione99/Pictures/Wallpapers/wallpaper.png -m fill"
+exec --no-startup-id wl-paste --type text  --watch cliphist store 
+exec --no-startup-id wl-paste --type image --watch cliphist store 
+
+bindsym $mod+V exec cliphist list | rofi -dmenu -theme darkyellow.rasi | cliphist decode | wl-copy
 
 # Font
 #font pango: SFMonoNerdFontMono 12

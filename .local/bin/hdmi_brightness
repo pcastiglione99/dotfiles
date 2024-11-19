@@ -1,19 +1,15 @@
 #!/bin/env sh
 
-brightness=$(ddccontrol -r 0x10 dev:/dev/i2c-0 2>&- | grep -oP 'Control 0x10: \+\/\K(\d+)')
-
-#[[ $button ]] \
-#	&& [[ $brightness -eq 0 ]] && $(ddccontrol -r 0x10 -w 50 dev:/dev/i2c-0 >&- 2>&-) \
-#		|| ddccontrol -r 0x10 -w 0 dev:/dev/i2c-0 >&- 2>&-
+brightness=$(ddcutil getvcp 0x10 | grep "VCP code 0x10" | awk -F'=' '{print $2}' | awk '{print $1}' | tr -d ',')
 
 if [ -n "$button" ]; then
     # If brightness is 0, set it to 50, otherwise set it to 0
     if [ "$brightness" -eq 0 ]; then
-        ddccontrol -r 0x10 -w 50 dev:/dev/i2c-0 >&- 2>&-
+        ddcutil setvcp 10 50
     else
-        ddccontrol -r 0x10 -w 0 dev:/dev/i2c-0 >&- 2>&-
+        ddcutil setvcp 10 0
     fi
 fi
 
-brightness=$(ddccontrol -r 0x10 dev:/dev/i2c-0 2>&- | grep -oP 'Control 0x10: \+\/\K(\d+)')
+brightness=$(ddcutil getvcp 0x10 | grep "VCP code 0x10" | awk -F'=' '{print $2}' | awk '{print $1}' | tr -d ',')
 echo $brightness

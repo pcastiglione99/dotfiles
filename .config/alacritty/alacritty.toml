@@ -35,7 +35,7 @@ family = "monospace"
 style = "Medium"
 
 [window]
-opacity = 1
+opacity = 0.9
 
 [window.padding]
 x = 10
