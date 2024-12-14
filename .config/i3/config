@@ -18,6 +18,9 @@ exec --no-startup-id xfce4-clipman
 
 #Sway
 exec --no-startup-id dunst
+exec --no-startup-id "swayidle timeout 300 'systemctl suspend' after-resume 'swaylock -i /home/pcastiglione99/Pictures/Wallpapers/blur.png --indicator --clock --ring-color ffffff00 --line-color ffffff00 --key-hl-color ffffff00'"
+for_window [app_id="firefox"] inhibit_idle fullscreen
+for_window [app_id="mpv"] inhibit_idle fullscreen
 blur enable
 corner_radius 10
 shadows enable
@@ -84,7 +87,7 @@ bindsym $mod+Shift+Tab workspace prev
 
 
 # start a terminal
-bindsym --release $mod+Return exec --no-startup-id alacritty
+bindsym --no-repeat $mod+Return exec --no-startup-id alacritty
 
 # power menu
 bindsym $mod+Shift+x exec rofi -show p -modi p:~/.local/bin/rofi-power-menu -theme darkyellow.rasi -lines 6
@@ -92,18 +95,18 @@ bindsym $mod+Shift+x exec rofi -show p -modi p:~/.local/bin/rofi-power-menu -the
 bindsym $mod+g exec echo -n "" | rofi -dmenu -p "Search:" -theme darkyellow.rasi -lines 0| xargs -I{} xdg-open 'https://www.google.de/search?q={}'
 
 # file manager
-bindsym --release $mod+Shift+Return exec --no-startup-id alacritty -e lfrun
-bindsym --release $mod+Shift+t exec --no-startup-id thunar
+bindsym --no-repeat $mod+Shift+Return exec --no-startup-id alacritty -e lfrun
+bindsym --no-repeat $mod+Shift+t exec --no-startup-id nemo
 
 # kill focused window
-bindsym --release $mod+Shift+q kill
+bindsym --no-repeat $mod+Shift+q kill
 
 # Screenshoot
-bindsym $mod+Print exec --no-startup-id ~/.local/bin/full_screenshoot
+bindsym --no-repeat $mod+Print exec --no-startup-id ~/.local/bin/full_screenshoot
 
-bindsym --release $mod+Shift+s exec --no-startup-id ~/.local/bin/window_screenshoot
+bindsym --no-repeat $mod+Shift+s exec --no-startup-id ~/.local/bin/window_screenshoot
 
-bindsym --release $mod+Shift+o exec --no-startup-id ~/.local/bin/ocr
+bindsym --no-repeat $mod+Shift+o exec --no-startup-id ~/.local/bin/ocr
 
 #Screenshoot to OCR
 #bindsym --release $mod+Shift+s exec --no-startup-id /usr/local/bin/screen_ts.sh
@@ -134,7 +137,7 @@ bindsym $mod+Shift+f bar mode toggle
 
 # Border
 #for_window [class="^.*"] border pixel 0
-default_border pixel 0
+default_border pixel 2
 hide_edge_borders smart
 
 # Colors
@@ -160,7 +163,7 @@ bindsym $mod+Shift+KP_Subtract gaps outer current minus 5
 # start rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme darkyellow.rasi
 bindsym $mod+e exec --no-startup-id rofi -show filebrowser -theme darkyellow.rasi
-#bindsym $mod+c exec --no-startup-id rofi -show calc -theme darkyellow.rasi
+bindsym $mod+c exec --no-startup-id rofi -show calc -theme darkyellow.rasi
 
 #start firefox
 bindsym $mod+w exec --no-startup-id firefox

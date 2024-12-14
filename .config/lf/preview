@@ -17,17 +17,15 @@ batorcat() {
 	fi
 }
 
-hash() {
-  cache="$HOME/.cache/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f -- "$1")" | sha256sum | cut -d' ' -f1).jpg"
-}
+CACHE="$HOME/.cache/lf/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f -- "$1")" | sha256sum | cut -d' ' -f1).jpg"
 
 cache() {
-  if ! [ -f "$cache" ]; then
-    dir="$(dirname -- "$cache")"
+  if ! [ -f "$CACHE" ]; then
+    dir="$(dirname -- "$CACHE")"
     [ -d "$dir" ] || mkdir -p -- "$dir"
     "$@"
   fi
-  draw "$cache"
+  draw "$CACHE"
 }
 
 file="$1"
@@ -62,7 +60,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		;;
 	*.pdf)
 		[ ! -f "${CACHE}.jpg" ] && \
-			pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
+			pdftoppm -jpeg -f 1 -singlefile "$1" "${CACHE}"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.epub)

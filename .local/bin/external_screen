@@ -4,6 +4,6 @@
 #	xrandr --output HDMI-1 --auto --output eDP-1 --off
 #fi
 if $(swaymsg -t get_outputs | grep "HDMI" > /dev/null); then 
-	swaymsg output eDP-1 disable
+	swaymsg output eDP-1 toggle
 	swaymsg output HDMI-A-1 mode 2560x1080@100Hz
 fi
