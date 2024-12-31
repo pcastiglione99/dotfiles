@@ -18,7 +18,8 @@ exec --no-startup-id xfce4-clipman
 
 #Sway
 exec --no-startup-id dunst
-exec --no-startup-id "swayidle timeout 300 'systemctl suspend' after-resume 'swaylock -i /home/pcastiglione99/Pictures/Wallpapers/blur.png --indicator --clock --ring-color ffffff00 --line-color ffffff00 --key-hl-color ffffff00'"
+workspace 1 output HDMI-A-1
+#exec --no-startup-id "swayidle timeout 300 'systemctl suspend' after-resume 'swaylock -i /home/pcastiglione99/Pictures/Wallpapers/blur.png --indicator --clock --ring-color ffffff00 --line-color ffffff00 --key-hl-color ffffff00'"
 for_window [app_id="firefox"] inhibit_idle fullscreen
 for_window [app_id="mpv"] inhibit_idle fullscreen
 blur enable
@@ -150,15 +151,15 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 
 # Gaps
-gaps inner 10
-gaps outer 4
-#smart_gaps on
+gaps inner 8
+gaps outer 2
+smart_gaps on
 
-bindsym $mod+KP_Add gaps inner current plus 5
-bindsym $mod+KP_Subtract gaps inner current minus 5
+bindsym $mod+KP_Add gaps inner current plus 1
+bindsym $mod+KP_Subtract gaps inner current minus 1
 
-bindsym $mod+Shift+KP_Add gaps outer current plus 5
-bindsym $mod+Shift+KP_Subtract gaps outer current minus 5
+bindsym $mod+Shift+KP_Add gaps outer current plus 1
+bindsym $mod+Shift+KP_Subtract gaps outer current minus 1
 
 # start rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme darkyellow.rasi
