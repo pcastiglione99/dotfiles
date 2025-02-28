@@ -3,5 +3,5 @@
 name=$(date +%Y-%m-%d_%H:%M:%S)
 mkdir -p ~/Pictures/Screenshoots/
 file=~/Pictures/Screenshoots/$name.png
-#maim -s --hidecursor $file && xclip -selection clipboard -t image/png -i $file && dunstify -i $file -a Screenshoot copied!
-grimshot savecopy area $file # && dunstify -i $file -a Screenshoot copied!
+maim -s --hidecursor $file && xclip -selection clipboard -t image/png -i $file && dunstify -i $file -a Screenshoot "Screenshoot copied!"
+#grimshot savecopy area $file # && dunstify -i $file -a Screenshoot copied!

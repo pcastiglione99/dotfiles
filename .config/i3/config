@@ -1,69 +1,32 @@
 #Use Windows Button as mod
 set $mod Mod4
-#exec_always --no-startup-id xset r rate 250 60
-#exec_always --no-startup-id setxkbmap -layout it
-#exec --no-startup-id xset dpms 0 0 0
-#exec_always --no-startup-id xborders -c ~/.config/i3/xborders.json
-#exec --no-startup-id setxkbmap -layout it
-#exec --no-startup-id ~/.config/i3/xmod.sh
-#exec --no-startup-id nm-applet
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec_always --no-startup-id xset r rate 250 60
+exec_always --no-startup-id setxkbmap -layout it
+exec --no-startup-id xborders --smart-hide-border
 #exec --no-startup-id xcalib ~/.config/i3/calibrated.icm
-exec --no-startup-id xfce4-clipman
-#exec_always --no-startup-id exec i3-workspace-names-daemon
-#exec --no-startup-id xautolock -time 10 -locker '~/.local/bin/xautolock_suspend'
-# Bluetooth
-#exec_always --no-startup-id blueman-applet
-
-
-#Sway
-exec --no-startup-id dunst
-workspace 1 output HDMI-A-1
-#exec --no-startup-id "swayidle timeout 300 'systemctl suspend' after-resume 'swaylock -i /home/pcastiglione99/Pictures/Wallpapers/blur.png --indicator --clock --ring-color ffffff00 --line-color ffffff00 --key-hl-color ffffff00'"
-for_window [app_id="firefox"] inhibit_idle fullscreen
-for_window [app_id="mpv"] inhibit_idle fullscreen
-blur enable
-corner_radius 10
-shadows enable
-input type:keyboard {
-    xkb_layout "it"
-    repeat_delay 250
-    repeat_rate 60
-}
-input type:touchpad {
-	tap enabled
-	natural_scroll enabled
-}
-exec --no-startup-id /home/pcastiglione99/.local/bin/external_screen
-exec --no-startup-id "swaybg -i /home/pcastiglione99/Pictures/Wallpapers/wallpaper.png -m fill"
-exec --no-startup-id wl-paste --type text  --watch cliphist store 
-exec --no-startup-id wl-paste --type image --watch cliphist store 
-
-bindsym $mod+V exec cliphist list | rofi -dmenu -theme darkyellow.rasi | cliphist decode | wl-copy
+exec --no-startup-id greenclip daemon
 
 # Font
-#font pango: SFMonoNerdFontMono 12
+font pango: SFMonoNerdFontMono 12
 
 # Onedrive
-exec --no-startup-id rclone --vfs-cache-mode full mount GoogleDrive: 							 ~/GoogleDrive/ 	 -v --log-file=$XDG_CACHE_HOME/rclone/GoogleDrive_log
-
-
-exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: 								 ~/onedrive/ 			 -v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
+exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: 			~/onedrive/ 			-v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
 
 exec --no-startup-id rclone --vfs-cache-mode full mount onedrivePolimi:Universita ~/onedrivePolimi/ -v --log-file=$XDG_CACHE_HOME/rclone/onedrivePolimi_log
 
+exec --no-startup-id rclone --vfs-cache-mode full mount GoogleDrive: 		~/GoogleDrive/ 		-v --log-file=$XDG_CACHE_HOME/rclone/GoogleDrive_log
 
 # Libinput
-#exec --no-startup-id libinput-gestures-setup start
+exec --no-startup-id libinput-gestures-setup start
 
 # Audio
 #bindsym XF86AudioMute			exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
 #bindsym XF86AudioLowerVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
 #bindsym XF86AudioRaiseVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
 
-bindsym $mod+F1				exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
-bindsym $mod+F2 				exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
-bindsym $mod+F3 				exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
+bindsym $mod+F1	exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
+bindsym $mod+F2	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
+bindsym $mod+F3	exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
 
 # Brightness
 bindsym XF86ScreenSaver 		exec --no-startup-id ~/.local/bin/toggle_screen
@@ -84,11 +47,12 @@ exec_always --no-startup-id autotiling
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-
+#bindsym $mod+V exec cliphist list | rofi -dmenu -theme darkyellow.rasi | cliphist decode | xclip -selection clipboard
+bindsym $mod+V exec rofi -modi "clipboard:greenclip print" -theme darkyellow.rasi -show clipboard -run-command '{cmd}'
 
 
 # start a terminal
-bindsym --no-repeat $mod+Return exec --no-startup-id alacritty
+bindsym --release $mod+Return exec --no-startup-id alacritty
 
 # power menu
 bindsym $mod+Shift+x exec rofi -show p -modi p:~/.local/bin/rofi-power-menu -theme darkyellow.rasi -lines 6
@@ -96,18 +60,30 @@ bindsym $mod+Shift+x exec rofi -show p -modi p:~/.local/bin/rofi-power-menu -the
 bindsym $mod+g exec echo -n "" | rofi -dmenu -p "Search:" -theme darkyellow.rasi -lines 0| xargs -I{} xdg-open 'https://www.google.de/search?q={}'
 
 # file manager
-bindsym --no-repeat $mod+Shift+Return exec --no-startup-id alacritty -e lfrun
-bindsym --no-repeat $mod+Shift+t exec --no-startup-id nemo
+bindsym --release $mod+Shift+Return exec --no-startup-id alacritty -e lfrun
+bindsym --release $mod+Shift+t exec --no-startup-id nemo
 
 # kill focused window
-bindsym --no-repeat $mod+Shift+q kill
+#bindsym --release $mod+Shift+q kill
+
+set $close  "Close the window? (y/n)"
+
+mode $close {
+    bindsym y kill, mode default
+    bindsym Return kill, mode default
+
+    bindsym n mode default
+    bindsym Escape mode default
+}
+
+bindsym $mod+Shift+q mode $close
 
 # Screenshoot
-bindsym --no-repeat $mod+Print exec --no-startup-id ~/.local/bin/full_screenshoot
+bindsym $mod+Print exec --no-startup-id ~/.local/bin/full_screenshoot
 
-bindsym --no-repeat $mod+Shift+s exec --no-startup-id ~/.local/bin/window_screenshoot
+bindsym --release $mod+Shift+s exec --no-startup-id ~/.local/bin/window_screenshoot
 
-bindsym --no-repeat $mod+Shift+o exec --no-startup-id ~/.local/bin/ocr
+bindsym --release $mod+Shift+o exec --no-startup-id ~/.local/bin/ocr
 
 #Screenshoot to OCR
 #bindsym --release $mod+Shift+s exec --no-startup-id /usr/local/bin/screen_ts.sh
@@ -122,14 +98,14 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pcastiglione99/Pictur
 bar {
 	font pango:SF Pro Display, FontAwesome 10
 	position top
-	#mode hide+
+	#mode hide
 	#tray_output none
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
-	#i3bar_command i3bar -t
+	i3bar_command i3bar -t
 	colors {
 		background #00000040
     										#Border     #in 	    	#text
-		focused_workspace		#00000060 	#00000060 	#FFFFFF
+		focused_workspace		#000000A0 	#000000A0 	#FFFFFF
 		inactive_workspace  #00000040		#00000040		#FFFFFF
 	}
 }
@@ -137,8 +113,7 @@ bindsym $mod+Shift+f bar mode toggle
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Border
-#for_window [class="^.*"] border pixel 0
-default_border pixel 2
+for_window [class="^.*"] border pixel 0
 hide_edge_borders smart
 
 # Colors
@@ -152,14 +127,14 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 # Gaps
 gaps inner 8
-gaps outer 2
+gaps outer 4
 smart_gaps on
 
-bindsym $mod+KP_Add gaps inner current plus 1
-bindsym $mod+KP_Subtract gaps inner current minus 1
+bindsym $mod+KP_Add gaps inner current plus 5
+bindsym $mod+KP_Subtract gaps inner current minus 5
 
-bindsym $mod+Shift+KP_Add gaps outer current plus 1
-bindsym $mod+Shift+KP_Subtract gaps outer current minus 1
+bindsym $mod+Shift+KP_Add gaps outer current plus 5
+bindsym $mod+Shift+KP_Subtract gaps outer current minus 5
 
 # start rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme darkyellow.rasi
@@ -278,3 +253,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+for_window [window_role="pop-up"]                       floating enable
+for_window [window_role="bubble"]                       floating enable 
+for_window [window_role="task_dialog"]                  floating enable
+for_window [window_role="Preferences"]                  floating enable
+for_window [window_type="dialog"]                       floating enable 
+for_window [window_type="menu"]                         floating enable

@@ -24,14 +24,14 @@ function send_notification {
   
   if $(is_mute) = "true"
   then
-    dunstify -a volume -i " " -r 2593 -u normal "mute"
+    notify-send -r 2593 -a volume -i " " -u normal "mute"
   else
     volume=$(get_volume)
     
     bar=$(seq --separator="─" 0 "$((volume / 5))" | sed 's/[0-9]//g')
     
     # Send the notification
-    dunstify -a $volume -i " " -r 2593 -u normal "  $bar"
+    notify-send -r 2593 -a $volume -i " "  -u normal "  $bar"
   fi
 
 }

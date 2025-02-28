@@ -1,3 +1,2 @@
-#! /bin/bash
-
-xrandr --listactivemonitors | grep -q eDP-1 && xrandr --output eDP-1 --off || xrandr --output eDP-1 --auto
+#! /bin/sh
+swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active).name' | grep -q eDP-1 && swaymsg output eDP-1 disable || swaymsg output eDP-1 enable

@@ -17,6 +17,10 @@ export VIDEO="mpv"
 export IMAGE="feh"
 
 # Fixing Paths
+export EASYOCR_MODULE_PATH="$XDG_CONFIG_HOME/EasyOCR"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export TEXMFHOME=$XDG_DATA_HOME/texmf
 export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config

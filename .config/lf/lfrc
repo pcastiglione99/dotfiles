@@ -53,13 +53,13 @@ cmd open ${{
         text/*) nvim $fx;;
         tex) nvim $fx;;
         video/*) nohup mpv $fx >> /dev/null &;;
-        application/pdf) nohup sioyek $fx > /dev/null &;;
+        application/pdf) nohup zathura $fx > /dev/null &;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
 
 cmd clipboard ${{
-	cat $f | xclip -selection c
+	cat $f | wl-copy
 }}
 
 cmd trash ${{
@@ -136,9 +136,11 @@ cmd md2pdf ${{
 	set -f
 	for file in $fx
 	do
-		pandoc --template=GitHub.html5 --embed-resources --standalone $file -o $file.html
+    pandoc --from markdown-yaml_metadata_block --template=GitHub.html5 --embed-resources --standalone $file -o $file.html
+    #node ~/.local/bin/html_to_pdf/html_to_pdf.js $file.html
 		wkhtmltopdf --javascript-delay 3000 $file.html "${file%.*}".pdf
 		rm $file.html
+
 	done
 }}
 
@@ -150,11 +152,12 @@ cmd p7m2xml ${{
   done
 }}
 
-cmd fatture2pdf ${{
+cmd xml2pdf ${{
+		
 	set -f
 	for file in $fx
 	do
-    xml_to_pdf $file
+    xml_to_pdf "$file"
 	done
 }}
 

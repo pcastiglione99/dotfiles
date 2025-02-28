@@ -17,7 +17,6 @@ Plug 'stevearc/vim-arduino'
 Plug 'z3t0/arduvim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 call plug#end()
@@ -28,18 +27,7 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-"
-nnoremap <silent><expr> <leader>r  :MagmaEvaluateOperator<CR>
-nnoremap <silent>       <leader>rr :MagmaEvaluateLine<CR>
-xnoremap <silent>       <leader>r  :<C-u>MagmaEvaluateVisual<CR>
-nnoremap <silent>       <leader>rc :MagmaReevaluateCell<CR>
-nnoremap <silent>       <leader>rd :MagmaDelete<CR>
-nnoremap <silent>       <leader>ro :MagmaShowOutput<CR>
 
-
-
-let g:magma_automatically_open_output = v:false
-"let g:python3_host_prog="/home/pcastiglione99/Desktop/RAGify-Search/.venv/bin/python"
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -88,25 +76,24 @@ inoremap <silent><expr> <Tab>
 "+++++++++++++++++++ Theme +++++++++++++++
 " Vim Script
 set termguicolors
-colorscheme tokyonight-night
-
+colorscheme monokai-charcoal
 " Transparency
-"highlight Normal guibg=NONE ctermbg=NONE
-"highlight CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE
-"highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
-"highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE
-"highlight clear LineNr
-"highlight clear SignColumn
-"highlight clear StatusLine
+highlight Normal guibg=NONE ctermbg=NONE
+highlight CursorColumn cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE
+highlight clear LineNr
+highlight clear SignColumn
+highlight clear StatusLine
 
 " Change Color when entering Insert Mode
-"autocmd InsertEnter * set nocursorline
+autocmd InsertEnter * set nocursorline
 " Revert Color to default when leaving Insert Mode
-"autocmd InsertLeave * set nocursorline
-"" extra settings, uncomment them if necessary :) 
-"set cursorline
-"set noshowmode
-"set nocursorline
+autocmd InsertLeave * set nocursorline
+" extra settings, uncomment them if necessary :) 
+set cursorline
+set noshowmode
+set nocursorline
 " trasparent end
 
 let g:airline_theme='simple'

@@ -2,8 +2,6 @@
 
 name=$(date +%Y-%m-%d_%H:%M:%S)
 file=~/Pictures/Screenshoots/$name.png
-maim $file
-xclip -selection clipboard -t image/png -i $file
+maim --hidecursor $file && dunstify -a Screenshoot "Screenshoot saved!"
+#grimshot savecopy screen $file
 
-
-dunstify -i $file -a Screenshoot copied!
