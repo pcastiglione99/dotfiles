@@ -4,11 +4,13 @@ SCR_IMG=`mktemp`
 
 trap "rm $SCR_IMG*" EXIT
 
-grimshot savecopy area $SCR_IMG.png
+maim -s --hidecursor $SCR_IMG.png
+#grimshot savecopy area $SCR_IMG.png
 #mogrify -modulate 100,0 -resize 400% $SCR_IMG.png 
 
 tesseract $SCR_IMG.png $SCR_IMG &> /dev/null
-tr -d "\n\r" < $SCR_IMG.txt | wl-copy
-text=`wl-paste`
+#tr -d "\n\r" < $SCR_IMG.txt | wl-copy
+tr -d "\n\r" < $SCR_IMG.txt | xclip -sel clip
+text=`xclip -o`
 dunstify -a "Text Scanned" "$text"
 exit

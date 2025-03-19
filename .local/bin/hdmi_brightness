@@ -4,12 +4,18 @@ brightness=$(ddcutil getvcp 0x10 | grep "VCP code 0x10" | awk -F'=' '{print $2}'
 
 if [ -n "$button" ]; then
     # If brightness is 0, set it to 50, otherwise set it to 0
-    if [ "$brightness" -eq 0 ]; then
-        ddcutil setvcp 10 50
-    else
-        ddcutil setvcp 10 0
-    fi
+    case "$brightness" in
+        0)
+            ddcutil setvcp 10 20
+            ;;
+        20)
+            ddcutil setvcp 10 50
+            ;;
+        50)
+            ddcutil setvcp 10 0
+            ;;
+    esac
 fi
 
 brightness=$(ddcutil getvcp 0x10 | grep "VCP code 0x10" | awk -F'=' '{print $2}' | awk '{print $1}' | tr -d ',')
-echo $brightness
+echo " $brightness%"

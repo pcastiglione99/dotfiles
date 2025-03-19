@@ -61,12 +61,12 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.pdf)
 		[ ! -f "${CACHE}.jpg" ] && \
 			pdftoppm -jpeg -f 1 -singlefile "$1" "${CACHE}"
-		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+      image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.epub)
 		[ ! -f "$CACHE" ] && \
-			epub-thumbnailer "$1" "$CACHE" 1024
-		image "$CACHE" "$2" "$3" "$4" "$5"
+        epub-thumbnailer "$1" "$CACHE" 1024
+        image "$CACHE" "$2" "$3" "$4" "$5"
 		;;
 	*.cbz|*.cbr|*.cbt)
 		[ ! -f "$CACHE" ] && \

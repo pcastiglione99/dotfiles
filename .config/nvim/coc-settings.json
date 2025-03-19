@@ -1,4 +1,6 @@
 {
+  "java.inlayHints.parameterNames.enable": false,
+  "java.inlayHints.parameterNames.exclusions": "*",
 	"pyright.inlayHints.functionReturnTypes": false,
 	"pyright.inlayHints.parameterTypes": false,
 	"pyright.inlayHints.variableTypes": false

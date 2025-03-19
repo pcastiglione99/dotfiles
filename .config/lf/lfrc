@@ -58,8 +58,12 @@ cmd open ${{
     esac
 }}
 
+cmd path_copy ${{
+	readlink -f $f | xclip -sel clip
+}}
+
 cmd clipboard ${{
-	cat $f | wl-copy
+	cat $f | xclip -sel clip
 }}
 
 cmd trash ${{

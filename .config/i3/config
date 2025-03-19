@@ -42,7 +42,7 @@ for_window [class="YAD"] floating enable
 for_window [class="gnome-calculator"] floating enable
 
 # AutoTiling
-exec_always --no-startup-id autotiling
+exec_always --no-startup-id autotiling -sr 1.61
 
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
@@ -89,10 +89,10 @@ bindsym --release $mod+Shift+o exec --no-startup-id ~/.local/bin/ocr
 #bindsym --release $mod+Shift+s exec --no-startup-id /usr/local/bin/screen_ts.sh
 
 #Picom
-exec_always --no-startup-id picom -b
+exec --no-startup-id picom -b
 
 # WallPaper
-exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pcastiglione99/Pictures/Wallpapers/wallpaper.png
+exec --no-startup-id feh --no-fehbg --bg-fill /home/pcastiglione99/Pictures/Wallpapers/wallpaper.png
 
 
 bar {
@@ -110,7 +110,6 @@ bar {
 	}
 }
 bindsym $mod+Shift+f bar mode toggle
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Border
 for_window [class="^.*"] border pixel 0

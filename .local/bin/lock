@@ -1,0 +1,2 @@
+#!/bin/sh
+i3lock -i /home/pcastiglione99/Pictures/Wallpapers/blur.png --indicator --clock --inside-color ffffff00 --line-color ffffff00 --keyhl-color ffffff00

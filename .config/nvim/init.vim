@@ -19,9 +19,13 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'olimorris/onedarkpro.nvim'
 call plug#end()
 
-let mapleader = " "
+set shiftwidth=4 smarttab
+set expandtab
+
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -74,8 +78,8 @@ inoremap <silent><expr> <Tab>
 "++++++++++++++++++++++++++++++++++++++++
 
 "+++++++++++++++++++ Theme +++++++++++++++
-" Vim Script
 set termguicolors
+"colorscheme onedark_dark
 colorscheme monokai-charcoal
 " Transparency
 highlight Normal guibg=NONE ctermbg=NONE
@@ -97,6 +101,8 @@ set nocursorline
 " trasparent end
 
 let g:airline_theme='simple'
+
+autocmd VimEnter * TSEnable highlight
 
 " +++++++++++++++++++++++++++++++++++++++++++++++
 

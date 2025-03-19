@@ -1,6 +1,6 @@
 #!/bin/env sh
 
-card=$(pactl list cards short | awk '{print $2}' | head -n 1) &&
+card=$(pactl list cards short | grep "pci" | awk '{print $2}' | head -n 1) &&
 [[ $button ]] \
 	&& $([[ $(pactl info | grep "analog") ]] \
 		&& $(pactl set-card-profile $card output:hdmi-stereo) \
