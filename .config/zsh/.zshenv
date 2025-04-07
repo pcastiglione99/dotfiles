@@ -1,6 +1,11 @@
 export OLLAMA_HOST=0.0.0.0
 export VIMRUNTIME=/usr/share/nvim/runtime
 
+export DISPLAY=:0
+export XAUTHORITY=$HOME/.Xauthority
+
+export ZDOTDIR="$HOME/.config/zsh"
+
 # XDG Paths
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
