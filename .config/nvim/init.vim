@@ -3,6 +3,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'echasnovski/mini.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'lilydjwg/colorizer'
 Plug 'lervag/vimtex'
  Plug 'prettier/vim-prettier', {
@@ -21,6 +23,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'olimorris/onedarkpro.nvim'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
 call plug#end()
 
 set shiftwidth=4 smarttab

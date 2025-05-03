@@ -8,7 +8,8 @@ set icons
 #set hidden true
 map m clear
 map t clear
-map <esc> clear
+#map <esc> clear
+map <esc> unselect
 map <enter> open
 map <f-5> reload
 
@@ -141,7 +142,7 @@ cmd md2pdf ${{
 	set -f
 	for file in $fx
 	do
-    pandoc --from markdown-yaml_metadata_block --template=GitHub.html5 --embed-resources --standalone $file -o $file.html
+    pandoc --from markdown-yaml_metadata_block --template=/usr/share/pandoc/data/templates/GitHub.html5 --embed-resources --standalone $file -o $file.html
     #node ~/.local/bin/html_to_pdf/html_to_pdf.js $file.html
 		wkhtmltopdf --javascript-delay 3000 $file.html "${file%.*}".pdf
 		rm $file.html
@@ -181,7 +182,7 @@ cmd html2pdf ${{
 	set -f
 	for file in $fx
 	do
-		wkhtmltopdf --javascript-delay 3000 --enable-local-file-access $file.html "${file%.*}".pdf
+		wkhtmltopdf --javascript-delay 3000 --enable-local-file-access $file "${file%.*}".pdf
 	done
 }}
 

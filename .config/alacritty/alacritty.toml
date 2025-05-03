@@ -5,6 +5,10 @@
 background = '#060606'
 foreground = '#FFFFFF'
 
+[font]
+normal = {family = "SFMonoNerdFontMono", style = "Regular"}
+size = 12
+
 # Normal Colours
 [colors.normal]
 black   = '#1a1a1a'

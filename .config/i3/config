@@ -5,9 +5,10 @@ exec_always --no-startup-id setxkbmap -layout it
 exec --no-startup-id xborders --smart-hide-border
 #exec --no-startup-id xcalib ~/.config/i3/calibrated.icm
 exec --no-startup-id greenclip daemon
+exec --no-startup-id i3-workspace-names
 
 # Font
-font pango: SFMonoNerdFontMono 12
+font pango: SFMonoNerdFontMono, Awesome 12
 
 # Onedrive
 exec --no-startup-id rclone --vfs-cache-mode full mount onedrive: 			~/onedrive/ 			-v --log-file=$XDG_CACHE_HOME/rclone/onedrive_log
@@ -96,7 +97,7 @@ exec --no-startup-id feh --no-fehbg --bg-fill /home/pcastiglione99/Pictures/Wall
 
 
 bar {
-	font pango:SF Pro Display, FontAwesome 10
+	font pango: FontAwesome 10
 	position top
 	#mode hide
 	#tray_output none
