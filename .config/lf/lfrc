@@ -27,6 +27,7 @@ map gm cd /run/media/pcastiglione99/DATA
 map gu cd ~/onedrivePoliMi/Universita/Magistrale/Tesi
 map gt cd ~/.local/share/Trash/files
 map gh cd 
+map gc cd ~/.config 
 map gp cd ~/Pictures
 map gd cd ~/Downloads
 map <c-t> terminal
@@ -42,7 +43,8 @@ cmd pdfflat ${{
     set -f
     for file in $fx
     do
-        convert -density 180 $file "${file%.*}"_flat.pdf
+        #convert -density 180 $file "${file%.*}"_flat.pdf
+        gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${file%.*}"_flat.pdf $file
     done
 }}
 
@@ -118,7 +120,7 @@ cmd tar ${{
 # compress current file or selected files with zip
 cmd zip ${{
     set -f
-	name=${1-$(date +"%d-%m-%Y:%H:%M:%S")}
+	  name=${1-$(date +"%d-%m-%Y:%H:%M:%S")}
     mkdir $name
     cp -r $fx $name
     zip -r $name.zip $name
@@ -167,14 +169,19 @@ cmd xml2pdf ${{
 	done
 }}
 
+cmd img2pdf ${{
+    set -f
+    img2pdf $fx > $1.pdf
+}}
+
 
 cmd notebook2pdf ${{
 	set -f
 	for file in $fx
 	do
-		jupyter nbconvert --to html $file --output $file
-		wkhtmltopdf --javascript-delay 3000 --enable-local-file-access $file.html "${file%.*}".pdf
-		rm $file.html
+		jupyter nbconvert --to webpdf $file
+		#wkhtmltopdf --javascript-delay 3000 --enable-local-file-access $file.html "${file%.*}".pdf
+		#rm $file.html
 	done
 }}
 

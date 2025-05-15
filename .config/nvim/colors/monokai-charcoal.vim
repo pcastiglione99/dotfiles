@@ -9,13 +9,13 @@ if exists("syntax_on")
 endif
 
 let g:colors_name = "Monokai Charcoal"
-
+"#0a0006 BACKGROUND
 hi Cursor ctermfg=232 ctermbg=231 cterm=NONE guifg=#0a0006 guibg=#f8f8f0 gui=NONE
 hi Visual ctermfg=NONE ctermbg=NONE cterm=REVERSE guifg=REVERSE guibg=REVERSE gui=REVERSE
 hi CursorLine ctermfg=NONE ctermbg=234 cterm=NONE guifg=NONE guibg=#22191e gui=NONE
 hi CursorColumn ctermfg=NONE ctermbg=234 cterm=NONE guifg=NONE guibg=#22191e gui=NONE
 hi ColorColumn ctermfg=NONE ctermbg=234 cterm=NONE guifg=NONE guibg=#22191e gui=NONE
-hi LineNr ctermfg=244 ctermbg=234 cterm=NONE guifg=#817c7c guibg=#22191e gui=NONE
+hi LineNr ctermfg=244 ctermbg=234 cterm=NONE guifg=#817c7c guibg=#0a0006 gui=NONE
 hi VertSplit ctermfg=59 ctermbg=59 cterm=NONE guifg=#4f484a guibg=#4f484a gui=NONE
 hi MatchParen ctermfg=197 ctermbg=NONE cterm=underline guifg=#f92672 guibg=NONE gui=underline
 hi StatusLine ctermfg=231 ctermbg=59 cterm=bold guifg=#f8f8f2 guibg=#4f484a gui=bold

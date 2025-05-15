@@ -34,6 +34,9 @@ bindsym XF86ScreenSaver 		exec --no-startup-id ~/.local/bin/toggle_screen
 bindsym XF86MonBrightnessDown	exec --no-startup-id ~/.local/bin/brightness_control down	&& pkill -RTMIN+2 i3blocks
 bindsym XF86MonBrightnessUp 	exec --no-startup-id ~/.local/bin/brightness_control up		&& pkill -RTMIN+2 i3blocks
 
+bindsym $mod+F9	 exec --no-startup-id ~/.local/bin/hdmi_brightness_control down	&& pkill -RTMIN+2 i3blocks
+bindsym $mod+F10 exec --no-startup-id ~/.local/bin/hdmi_brightness_control up	&& pkill -RTMIN+2 i3blocks
+
 # Touchpad
 bindcode 199					exec --no-startup-id ~/.local/bin/touchpad_switch
 

@@ -3,6 +3,7 @@ export VIMRUNTIME=/usr/share/nvim/runtime
 
 #export DISPLAY=:0
 #export XAUTHORITY=$HOME/.Xauthority
+export GTK_THEME=WhiteSur-Dark
 
 #export ZDOTDIR="$HOME/.config/zsh"
 export LC_ALL="en_DK.UTF-8"
