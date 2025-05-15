@@ -10,7 +10,7 @@ maim -s --hidecursor $SCR_IMG.png
 
 tesseract $SCR_IMG.png $SCR_IMG &> /dev/null
 #tr -d "\n\r" < $SCR_IMG.txt | wl-copy
-tr -d "\n\r" < $SCR_IMG.txt | xclip -sel clip
-text=`xclip -o`
+tr -d "\n\r" < $SCR_IMG.txt | xclip -sel "clipboard"
+text=`xclip -o -sel "clipboard"`
 dunstify -a "Text Scanned" "$text"
 exit
