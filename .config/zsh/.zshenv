@@ -1,3 +1,4 @@
+export TERM=xterm-256color
 export OLLAMA_HOST=0.0.0.0
 export VIMRUNTIME=/usr/share/nvim/runtime
 
@@ -17,7 +18,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 export EDITOR="nvim"
 export READER="zathura"
 export VISUAL="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="kitty"
 export BROWSER="firefox"
 export VIDEO="mpv"
 export IMAGE="feh"
