@@ -1,12 +1,28 @@
 #!/bin/env sh
 
-card=$(pactl list cards short | grep "pci" | awk '{print $2}' | head -n 1) &&
-[[ $button ]] \
-	&& $([[ $(pactl info | grep "analog") ]] \
-		&& $(pactl set-card-profile $card output:hdmi-stereo) \
-		|| $(pactl set-card-profile $card output:analog-stereo))
+# Ottieni la scheda audio PCI principale
+card=$(pactl list cards short | grep "pci" | awk '{print $2}' | tail -n 1)
+[ -z "$card" ] && exit  # se non trova alcuna scheda, esci
 
-[[ $(pactl info | grep "hdmi") ]] && out=" hdmi" || out=""
+# Se viene passato un "click" (es. dalla barra), alterna HDMI/analogico
+if [ -n "$button" ]; then
+    if pactl info | grep -qi "analog"; then
+        pactl set-card-profile "$card" output:hdmi-stereo
+        out=" hdmi"
+    else
+        pactl set-card-profile "$card" output:analog-stereo
+        out=""
+    fi
+fi
 
-[[ $(pactl list sinks | grep "Mute: yes") ]] && echo " mute$out" || echo " $(pactl list sinks | grep -m 1 "Volume:" | awk '{print $5}')$out"
+# Ottieni il volume e lo stato mute del sink di default
+mute=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+volume=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | head -n 1)
+
+# Mostra lo stato in base al mute
+if [ "$mute" = "yes" ]; then
+    echo " mute$out"
+else
+    echo " $volume$out"
+fi
 

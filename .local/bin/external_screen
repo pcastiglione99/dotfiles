@@ -1,9 +1,11 @@
 #!/bin/sh
-#X11
-if xrandr --listmonitors | grep 'HDMI' >> /dev/null; then
-	xrandr --output HDMI-1 --auto --output eDP-1 --off
+# Switch automatico all'uscita HDMI se collegata
+
+#if xrandr | grep -q "HDMI-1-0 connected"; then
+#    xrandr --output HDMI-1-0 --primary --mode 2560x1080 --rate 100 --output eDP-1 --off
+#else
+#    xrandr --output eDP-1 --auto --primary --output HDMI-1-0 --off
+if $(swaymsg -t get_outputs | grep "HDMI" > /dev/null); then 
+	swaymsg output eDP-1 toggle
+	swaymsg output HDMI-A-3 mode 2560x1080@100Hz
 fi
-#if $(swaymsg -t get_outputs | grep "HDMI" > /dev/null); then 
-#	swaymsg output eDP-1 toggle
-#	swaymsg output HDMI-A-1 mode 2560x1080@100Hz
-#fi

@@ -1,6 +1,0 @@
-/home/pcastiglione99/.local/bin/external_screen &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-powerkit &
-dunst &
-#unclutter &
-exec /usr/bin/i3

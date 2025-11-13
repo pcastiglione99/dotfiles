@@ -4,8 +4,6 @@ export VIMRUNTIME=/usr/share/nvim/runtime
 
 #export DISPLAY=:0
 #export XAUTHORITY=$HOME/.Xauthority
-export GTK_THEME=WhiteSur-Dark
-
 #export ZDOTDIR="$HOME/.config/zsh"
 export LC_ALL="en_DK.UTF-8"
 # XDG Paths
@@ -13,6 +11,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
+#export XDG_CONFIG_DIRS=/etc/xdg
 
 # Default Apps
 export EDITOR="nvim"
@@ -33,7 +32,7 @@ export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+#export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv/
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv/
 export ICEAUTHORITY=$XDG_CACHE_HOME/ICEauthority/

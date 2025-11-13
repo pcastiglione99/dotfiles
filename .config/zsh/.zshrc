@@ -29,7 +29,8 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
-bindkey -e
+#export VI_MODE_SET_CURSOR=true
+#bindkey -v
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[3~" delete-char
@@ -37,6 +38,9 @@ bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
 CASE_SENSITIVE="false"
+
+# vi-mode
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
 
 # Syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

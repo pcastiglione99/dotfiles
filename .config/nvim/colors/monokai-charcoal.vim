@@ -9,25 +9,25 @@ if exists("syntax_on")
 endif
 
 let g:colors_name = "Monokai Charcoal"
-"#0a0006 BACKGROUND
-hi Cursor ctermfg=232 ctermbg=231 cterm=NONE guifg=#0a0006 guibg=#f8f8f0 gui=NONE
+"#060606 BACKGROUND
+hi Cursor ctermfg=232 ctermbg=231 cterm=NONE guifg=#060606 guibg=#f8f8f0 gui=NONE
 hi Visual ctermfg=NONE ctermbg=NONE cterm=REVERSE guifg=REVERSE guibg=REVERSE gui=REVERSE
 hi CursorLine ctermfg=NONE ctermbg=234 cterm=NONE guifg=NONE guibg=#22191e gui=NONE
 hi CursorColumn ctermfg=NONE ctermbg=234 cterm=NONE guifg=NONE guibg=#22191e gui=NONE
 hi ColorColumn ctermfg=NONE ctermbg=234 cterm=NONE guifg=NONE guibg=#22191e gui=NONE
-hi LineNr ctermfg=244 ctermbg=234 cterm=NONE guifg=#817c7c guibg=#0a0006 gui=NONE
+hi LineNr ctermfg=244 ctermbg=234 cterm=NONE guifg=#817c7c guibg=#060606 gui=NONE
 hi VertSplit ctermfg=59 ctermbg=59 cterm=NONE guifg=#4f484a guibg=#4f484a gui=NONE
 hi MatchParen ctermfg=197 ctermbg=NONE cterm=underline guifg=#f92672 guibg=NONE gui=underline
 hi StatusLine ctermfg=231 ctermbg=59 cterm=bold guifg=#f8f8f2 guibg=#4f484a gui=bold
 hi StatusLineNC ctermfg=231 ctermbg=59 cterm=NONE guifg=#f8f8f2 guibg=#4f484a gui=NONE
 hi Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi PmenuSel ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
-hi IncSearch ctermfg=232 ctermbg=186 cterm=NONE guifg=#0a0006 guibg=#e6db74 gui=NONE
+hi IncSearch ctermfg=232 ctermbg=186 cterm=NONE guifg=#060606 guibg=#e6db74 gui=NONE
 hi Search ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=underline
 hi Directory ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
-hi Folded ctermfg=208 ctermbg=232 cterm=NONE guifg=#fd971f guibg=#0a0006 gui=NONE
+hi Folded ctermfg=208 ctermbg=232 cterm=NONE guifg=#fd971f guibg=#060606 gui=NONE
 
-hi Normal ctermfg=231 ctermbg=232 cterm=NONE guifg=#f8f8f2 guibg=#0a0006 gui=NONE
+hi Normal ctermfg=231 ctermbg=232 cterm=NONE guifg=#f8f8f2 guibg=#060606 gui=NONE
 hi Boolean ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi int ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Character ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE

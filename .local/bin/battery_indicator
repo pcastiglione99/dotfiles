@@ -1,29 +1,26 @@
 #!/bin/bash
 
 capacity=$(cat /sys/class/power_supply/BAT1/capacity)
+battery_status=$(tr -d '\n' < /sys/class/power_supply/BAT1/status)
 
-battery_status=$(cat /sys/class/power_supply/BAT1/status)
-
-if [ $capacity -lt 15 ] 
-then
-	indicator= 
-	if [ $capacity -eq 14 ] && [ $battery_status = 'Discharging' ]
-	then
-		dunstify -u critical -a "Battery status" "Low Battery Level" 
-	fi
-elif [ $capacity -lt 30 ]
-then
-	indicator=
-elif [ $capacity -lt 60 ]
-then 
-	indicator= 
-elif [ $capacity -lt 80 ]
-then 
-	indicator= 
+if [ "$capacity" -lt 15 ]; then
+    indicator=""
+    if [ "$capacity" -eq 14 ] && [ "$battery_status" = "Discharging" ]; then
+        dunstify -u critical -a "Battery status" "Low Battery Level"
+    fi
+elif [ "$capacity" -lt 30 ]; then
+    indicator=""
+elif [ "$capacity" -lt 60 ]; then
+    indicator=""
+elif [ "$capacity" -lt 80 ]; then
+    indicator=""
 else
-	indicator=
+    indicator=""
 fi
 
-[ $battery_status != 'Discharging' ] && echo " $capacity%" || 
-echo "$indicator $capacity%"
+if [ "$battery_status" != "Discharging" ]; then
+    echo " $capacity%"
+else
+    echo "$indicator $capacity%"
+fi
 

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 function is_on(){
-  bluetooth | grep 'on'
+  bluetoothctl show | grep "Powered: yes"
+
 }
 
 # Left click
