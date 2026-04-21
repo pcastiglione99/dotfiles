@@ -1,0 +1,22 @@
+#!/bin/bash
+
+sleep 1
+
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
+# trova automaticamente il socket giusto
+export SWAYSOCK=$(find "$XDG_RUNTIME_DIR" -type s -name 'sway-ipc.*.sock' | head -n 1)
+
+if [ -z "$SWAYSOCK" ]; then
+    echo "SWAYSOCK not found"
+    exit 1
+fi
+
+STATUS=$(cat /sys/class/drm/card0-HDMI-A-3/status)
+
+if [ "$STATUS" = "connected" ]; then
+    swaymsg output eDP-1 disable
+else
+    swaymsg output eDP-1 enable
+fi
+

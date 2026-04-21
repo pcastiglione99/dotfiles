@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -e
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 file.p7m o file.xml"
+  exit 1
+fi
+
+INPUT="$1"
+# Determina il nome del PDF finale (rimuovendo .p7m o .xml)
+OUTPUT="$(basename "$INPUT" | sed -E 's/\.(p7m|xml)$//i').pdf"
+STYLE="$HOME/.local/bin/FoglioStileItalwork.xsl"
+
+# Crea una directory temporanea per i passaggi intermedi
+WORK_DIR=$(mktemp -d)
+trap 'rm -rf "$WORK_DIR"' EXIT
+
+TMP_XML="$WORK_DIR/invoice.xml"
+TMP_HTML="$WORK_DIR/invoice.html"
+
+# --- LOGICA DI ESTRAZIONE/COPIA ---
+if [[ "$INPUT" == *.p7m ]]; then
+    echo "Rilevato file p7m, estrazione XML in corso..."
+    openssl smime -verify -inform DER -in "$INPUT" -noverify -nosigs -out "$TMP_XML" 2>/dev/null
+elif [[ "$INPUT" == *.xml ]]; then
+    echo "Rilevato file già XML, salto estrazione..."
+    cp "$INPUT" "$TMP_XML"
+else
+    echo "Errore: il file deve avere estensione .p7m o .xml"
+    exit 2
+fi
+
+# --- CONVERSIONE ---
+if [ -f "$STYLE" ]; then
+    xsltproc "$STYLE" "$TMP_XML" > "$TMP_HTML"
+else
+    echo "Errore: Foglio di stile non trovato in $STYLE"
+    exit 3
+fi
+
+# Trasformazione finale in PDF
+html_to_pdf.js "$TMP_HTML" "$OUTPUT"
+
+echo "Processo completato: generato $OUTPUT"

@@ -1943,8 +1943,8 @@
 							<table class="tbFoglio"  >
 								<thead>
 									<tr>
-										<th width="20px">N°</th>
-										<th width="80px">Cod. articolo</th>
+										<th width="30px">N°</th>
+										<th width="100px">Cod. articolo</th>
 										<th>Descrizione</th>
 										<th class="import2" >Quantità</th>
 										<th class="import2">Prezzo unitario</th>
@@ -2406,7 +2406,7 @@
 								<thead>
 									<tr>
 										<th>Modalità pagamento</th>
-										<th width="188px">IBAN</th>
+										<th width="230px">IBAN</th>
 										<th>Istituto</th>
 										<th class="data">Data scadenza</th>
 										<th class="ximport">Importo</th>

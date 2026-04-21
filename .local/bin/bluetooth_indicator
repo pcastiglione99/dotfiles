@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function is_on(){
-  bluetoothctl show | grep "Powered: yes"
+ echo "show" | bluetoothctl | grep "Powered: yes"
 
 }
 

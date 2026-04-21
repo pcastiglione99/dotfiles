@@ -6,9 +6,18 @@ if [ -n "$button" ]; then
     # If brightness is 0, set it to 50, otherwise set it to 0
     case "$brightness" in
         0)
+            ddcutil setvcp 10 10
+            ;;
+        10)
             ddcutil setvcp 10 20
             ;;
         20)
+            ddcutil setvcp 10 30
+            ;;
+        30)
+            ddcutil setvcp 10 40
+            ;;
+        40)
             ddcutil setvcp 10 50
             ;;
         50)

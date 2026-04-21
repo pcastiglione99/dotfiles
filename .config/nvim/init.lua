@@ -1,6 +1,8 @@
 require("keymaps")
 
 vim.opt.termguicolors = true
+--vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.opt.ignorecase = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

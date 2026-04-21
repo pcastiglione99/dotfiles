@@ -1,11 +1,16 @@
+export QT_QPA_PLATFORM=xcb
 export TERM=xterm-256color
 export OLLAMA_HOST=0.0.0.0
-export VIMRUNTIME=/usr/share/nvim/runtime
+#export VIMRUNTIME=/usr/share/nvim/runtime
+export XDG_CURRENT_DESKTOP=sway
+export XCURSOR_THEME=Adwaita
+export XCURSOR_SIZE=24
 
 #export DISPLAY=:0
 #export XAUTHORITY=$HOME/.Xauthority
 #export ZDOTDIR="$HOME/.config/zsh"
 export LC_ALL="en_DK.UTF-8"
+export LC_NUMERIC="en_DK.UTF-8"
 # XDG Paths
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -32,15 +37,14 @@ export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-#export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv/
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv/
 export ICEAUTHORITY=$XDG_CACHE_HOME/ICEauthority/
-export ZSH="$ZDOTDIR/.oh-my-zsh"
+
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 alias svn="svn --config-dir \"$XDG_CONFIG_HOME\"/subversion"
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 #export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 # Path
 export PATH="$HOME/.local/bin:$PATH"

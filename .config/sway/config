@@ -2,23 +2,39 @@
 set $mod Mod4
 
 input "type:keyboard" {
+    xkb_layout "us"
     repeat_rate 60
     repeat_delay 250
 }
 
+input "10248:262:FTCS0038:00_2808:0106_Touchpad" {
+    natural_scroll enabled
+    tap enabled
+}
+
+exec_always gsettings set org.gnome.nautilus.preferences enable-interactive-search false
+
+
 exec --no-startup-id dunst
 exec --no-startup-id /home/pcastiglione99/.local/bin/external_screen
 
-set $gnome-schema org.gnome.desktop.interface
-exec_always import-gsettings
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'Flat-Remix-GTK-Cyan-Dark'
-    gsettings set $gnome-schema icon-theme 'Flat-Remix-Cyan-Dark'
-}
+exec --no-startup-id systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#set $gnome-schema org.gnome.desktop.interface
+
+#exec_always import-gsettings
+#exec_always {
+#    gsettings set $gnome-schema gtk-theme 'Arc-Dark'
+#    gsettings set $gnome-schema icon-theme 'Adwaita'
+#}
+#exec_always gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+
+set $BROWSER firefox
 
 blur enable
-corner_radius 10
+corner_radius 12
 shadows enable
 
 exec --no-startup-id wl-paste --type text  --watch cliphist store 
@@ -36,13 +52,12 @@ exec --no-startup-id rclone --vfs-cache-mode full mount GoogleDrive: 		~/GoogleD
 #bindsym XF86AudioMute			exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
 #bindsym XF86AudioLowerVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
 #bindsym XF86AudioRaiseVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
-
 bindsym XF86AudioMute	        exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioRaiseVolume    exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
 
 # Brightness
-bindsym XF86ScreenSaver 		exec --no-startup-id ~/.local/bin/toggle_screen
+bindsym $mod+Shift+e     		exec --no-startup-id ~/.local/bin/toggle_screen
 bindsym XF86MonBrightnessDown	exec --no-startup-id ~/.local/bin/brightness_control down	&& pkill -RTMIN+2 i3blocks
 bindsym XF86MonBrightnessUp 	exec --no-startup-id ~/.local/bin/brightness_control up		&& pkill -RTMIN+2 i3blocks
 
@@ -62,7 +77,7 @@ for_window [class="YAD"] floating enable
 for_window [class="gnome-calculator"] floating enable
 
 # AutoTiling
-exec_always --no-startup-id autotiling -sr 1.61
+exec --no-startup-id autotiling -sr 1.61
 
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
@@ -70,16 +85,16 @@ bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+V exec cliphist list | rofi -dmenu -theme darkyellow.rasi | cliphist decode | wl-copy
 
 # start a terminal
-bindsym --release $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id kitty
 
 # power menu
 bindsym $mod+Shift+x exec rofi -show p -modi p:~/.local/bin/rofi-power-menu -theme darkyellow.rasi -lines 6
 
-bindsym $mod+g exec echo -n "" | rofi -dmenu -p "Search:" -theme darkyellow.rasi -lines 0| xargs -I{} xdg-open 'https://www.google.de/search?q={}'
+bindsym $mod+g exec echo -n "" | rofi -dmenu -p "Search:" -theme darkyellow.rasi -lines 0| xargs -I{} $BROWSER 'https://www.google.de/search?q={}'
 
 # file manager
 bindsym --release $mod+Shift+Return exec --no-startup-id kitty -e yazi
-bindsym --release $mod+Shift+t exec --no-startup-id nemo
+bindsym --release $mod+Shift+t exec --no-startup-id nautilus
 
 # kill focused window
 #bindsym --release $mod+Shift+q kill
@@ -106,25 +121,22 @@ bindsym --release $mod+Shift+o exec --no-startup-id ~/.local/bin/ocr
 #Screenshoot to OCR
 #bindsym --release $mod+Shift+s exec --no-startup-id /usr/local/bin/screen_ts.sh
 
-#Picom
-exec --no-startup-id picom -b
-
 # WallPaper
 output "*" bg /home/pcastiglione99/Pictures/Wallpapers/wallpaper.jpeg fill
 
 
 bar {
-	font pango: FontAwesome 10
+    font pango: FontAwesome 10
 	position top
 	#mode hide
 	#tray_output none
 	status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 	#i3bar_command i3bar
 	colors {
-		background #00000040
+		background #00000000
     						#Border     #in 	    	#text
-		focused_workspace	#00000060 	#00000060 	    #FFFFFF
-		inactive_workspace  #00000040	#00000040		#FFFFFF
+		focused_workspace	#00000030 	#00000030 	    #FFFFFF
+		inactive_workspace  #00000000	#00000000		#FFFFFF
 	}
 }
 bindsym $mod+Shift+f bar mode toggle
@@ -145,7 +157,7 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 # Gaps
 gaps inner 8
 gaps outer 4
-smart_gaps on
+# smart_gaps on
 
 bindsym $mod+KP_Add gaps inner current plus 5
 bindsym $mod+KP_Subtract gaps inner current minus 5
@@ -159,7 +171,7 @@ bindsym $mod+e exec --no-startup-id rofi -show filebrowser -theme darkyellow.ras
 bindsym $mod+c exec --no-startup-id rofi -show calc -theme darkyellow.rasi
 
 #start firefox
-bindsym $mod+w exec --no-startup-id firefox
+bindsym $mod+w exec --no-startup-id $BROWSER
 
 # change focus
 bindsym $mod+h focus left
@@ -196,7 +208,9 @@ bindsym $mod+f fullscreen toggle
 
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+a floating toggle
+
+
 
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle

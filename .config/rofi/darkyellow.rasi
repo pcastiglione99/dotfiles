@@ -1,7 +1,7 @@
 * {
     font: "Font Awesome 12";
 
-    bg0:     #000000;
+    bg0:     #000000C0;
     bg1:     #000000;
     fg0:     #ffffff;
 
@@ -18,24 +18,33 @@
 
 window {
     location:   center;
-    width:      580;
+    width:      650;
+    padding:  25px;
     y-offset:   -90;
-    background-color:   #000000C0;
+    background-color: @bg0;
+    border-radius: 16px;
+    transparency: "real";
 }
 
 inputbar {
     spacing:    8px; 
     padding:    8px;
 
-    background-color:   #00000020;
+    background-color: #00000000;
+    border-radius: 16px;
 }
 
 prompt, entry, element-icon, element-text {
     vertical-align: 0.5;
 }
 
+entry {
+  placeholder: "Search...";
+  padding: 8px;
+}
+
 prompt {
-    text-color: @accent-color;
+    enabled: false;
 }
 
 textbox {
