@@ -12,8 +12,7 @@ input "10248:262:FTCS0038:00_2808:0106_Touchpad" {
     tap enabled
 }
 
-exec_always gsettings set org.gnome.nautilus.preferences enable-interactive-search false
-
+exec --no-startup-id gsettings set org.gnome.nautilus.preferences enable-interactive-search false
 
 exec --no-startup-id dunst
 exec --no-startup-id /home/pcastiglione99/.local/bin/external_screen
@@ -22,14 +21,6 @@ exec --no-startup-id systemctl --user import-environment WAYLAND_DISPLAY XDG_CUR
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#set $gnome-schema org.gnome.desktop.interface
-
-#exec_always import-gsettings
-#exec_always {
-#    gsettings set $gnome-schema gtk-theme 'Arc-Dark'
-#    gsettings set $gnome-schema icon-theme 'Adwaita'
-#}
-#exec_always gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
 set $BROWSER firefox
 
@@ -49,12 +40,13 @@ font pango: Awesome 12
 exec --no-startup-id rclone --vfs-cache-mode full mount GoogleDrive: 		~/GoogleDrive/ 		-v --log-file=$XDG_CACHE_HOME/rclone/GoogleDrive_log
 
 # Audio
-#bindsym XF86AudioMute			exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
-#bindsym XF86AudioLowerVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
-#bindsym XF86AudioRaiseVolume 	exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMute	        exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioRaiseVolume    exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
+
+#bindsym $mod+F3	        exec	--no-startup-id ~/.local/bin/volume_control		 mute && pkill -RTMIN+1 i3blocks
+#bindsym $mod+F1       	exec	--no-startup-id ~/.local/bin/volume_control		 down && pkill -RTMIN+1 i3blocks
+#bindsym $mod+F2    exec	--no-startup-id ~/.local/bin/volume_control		 up   && pkill -RTMIN+1 i3blocks
 
 # Brightness
 bindsym $mod+Shift+e     		exec --no-startup-id ~/.local/bin/toggle_screen
@@ -67,6 +59,7 @@ bindsym $mod+F10 exec --no-startup-id ~/.local/bin/hdmi_brightness_control up	&&
 
 
 bindsym $mod+space exec --no-startup-id ~/.local/bin/keyboard
+
 
 # Touchpad
 bindcode 199					exec --no-startup-id ~/.local/bin/touchpad_switch
@@ -117,6 +110,9 @@ bindsym $mod+Print exec --no-startup-id ~/.local/bin/full_screenshoot
 bindsym --release $mod+Shift+s exec --no-startup-id ~/.local/bin/window_screenshoot
 
 bindsym --release $mod+Shift+o exec --no-startup-id ~/.local/bin/ocr
+
+
+bindsym --release $mod+Shift+v exec --no-startup-id ~/Desktop/dev/voice2txt/ciao.sh
 
 #Screenshoot to OCR
 #bindsym --release $mod+Shift+s exec --no-startup-id /usr/local/bin/screen_ts.sh
@@ -171,7 +167,8 @@ bindsym $mod+e exec --no-startup-id rofi -show filebrowser -theme darkyellow.ras
 bindsym $mod+c exec --no-startup-id rofi -show calc -theme darkyellow.rasi
 
 #start firefox
-bindsym $mod+w exec --no-startup-id $BROWSER
+#bindsym $mod+w exec --no-startup-id $BROWSER
+bindsym $mod+w exec --no-startup-id "__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia firefox"
 
 # change focus
 bindsym $mod+h focus left
@@ -255,7 +252,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+r restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -290,3 +287,7 @@ for_window [window_role="task_dialog"]                  floating enable
 for_window [window_role="Preferences"]                  floating enable
 for_window [window_type="dialog"]                       floating enable 
 for_window [window_type="menu"]                         floating enable
+
+
+
+bindsym $mod+Shift+r exec ~/.local/bin/voice2txt/ciao.sh

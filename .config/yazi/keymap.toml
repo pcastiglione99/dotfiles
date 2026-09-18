@@ -1,13 +1,13 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+#"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
 [mgr]
 
 keymap = [
 	{ on = "<C-t>", run = "shell -- nohup $TERMINAL > /dev/null &", desc = "Exit visual mode, clear selection, or cancel search" },
 
-    {on = ["g", "p"], 
+    {on = ["c", "i"], 
      run = """shell -- 
         set -f
         for file in "$@"; do
@@ -70,7 +70,7 @@ keymap = [
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
 	# Operation
-	{ on = "e",         run = "shell 'nvim %*' --block",                        desc = "Edit selected files" },
+	{ on = "e",         run = "shell 'nvim %s' --block",     desc = "Edit selected files" },
 	{ on = "o",         run = "open",                        desc = "Open selected files" },
 	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "<Enter>",   run = "enter",                        desc = "Open selected files" },
